@@ -1,33 +1,33 @@
 import React from "react";
 import {
-  StopwatchContainer as SwContainer,
-  StopwatchButtonsContainer as SwButtonsContainer,
-  StopwatchButton as SwButton,
-  StopwatchButtonIcon as SwButtonIcon,
+  StopwatchContainer,
+  ActiveBtnsContainer,
+  Button,
+  ButtonIcon,
 } from "./Stopwatch.elements";
 
 function Stopwatch(props) {
   const StartButton = (
-    <SwButton onClick={props.startHandler}>
+    <Button onClick={props.startHandler}>
       Start with timer
-      <SwButtonIcon className='fas fa-stopwatch'></SwButtonIcon>
-    </SwButton>
+      <ButtonIcon className='fas fa-stopwatch'></ButtonIcon>
+    </Button>
   );
   const ActiveButtons = (
-    <SwButtonsContainer>
-      <SwButton onClick={props.resetHandler}>Reset</SwButton>
-      <SwButton onClick={props.pauseResumeHandler}>
+    <ActiveBtnsContainer>
+      <Button onClick={props.resetHandler}>Reset</Button>
+      <Button onClick={props.pauseResumeHandler}>
         {props.isPaused ? "Resume" : "Pause"}
-      </SwButton>
-    </SwButtonsContainer>
+      </Button>
+    </ActiveBtnsContainer>
   );
 
   return (
-    <SwContainer>
+    <StopwatchContainer className='row-1'>
       {!props.readyBanner &&
         !props.isWon &&
         (props.isActive ? ActiveButtons : StartButton)}
-    </SwContainer>
+    </StopwatchContainer>
   );
 }
 
