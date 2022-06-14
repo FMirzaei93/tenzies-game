@@ -48,9 +48,5 @@ export default function Die(props) {
     }
   }
 
-  return (
-    <DieFace style={style} onClick={props.clickHandler}>
-      {/* <h2 className='die-num'>{props.value}</h2> */}
-    </DieFace>
-  );
+  return <DieFace style={style} onClick={props.clickHandler}></DieFace>;
 }
