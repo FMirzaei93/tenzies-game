@@ -7,4 +7,5 @@ export const DieFace = styled.div`
   cursor: pointer;
   width: 100%;
   padding-bottom: 100%;
+  aspect-ratio: 1;
 `;
