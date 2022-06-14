@@ -1,5 +1,5 @@
 import React from "react";
-import { TimerContainer } from "./Time.elements";
+import { TimerContainer } from "./Timer.elements";
 import { SplitTime } from "../../Helper/utils.module";
 
 function Timer(props) {
