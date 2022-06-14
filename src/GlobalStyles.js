@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: #0b2434;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 
 `;
@@ -20,8 +24,11 @@ export const Frame = styled.main`
   height: 75vh;
   background-color: #f5f5f5;
   border-radius: 5px;
-  margin: 100px auto;
   padding: 30px;
+
+  @media only screen and (max-width: 420px) {
+    width: 95vw;
+  }
 `;
 /*----------- Inner Container -----------*/
 export const InnerContainer = styled.div`
@@ -84,6 +91,10 @@ export const Button = styled.button`
   font-size: 17px;
   cursor: pointer;
   padding: 0 10px;
+
+  @media only screen and (max-width: 420px) {
+    width: 40%;
+  }
 `;
 /*----------- Stopwatch Container -----------*/
 
