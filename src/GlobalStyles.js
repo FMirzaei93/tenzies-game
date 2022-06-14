@@ -32,37 +32,29 @@ export const InnerContainer = styled.div`
   align-items: center;
   position: relative;
   box-shadow: 0px 0px 15px 4px rgb(218, 204, 255);
-
-  @media only screen and (min-width: 200px) {
-    background-color: #eee567;
-  }
 `;
 
+/*----------- Counter + Timer -----------*/
+export const ConterTimerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+`;
+
+/*----------- Title and Instruction-----------*/
+
+export const Title = styled.h1``;
+export const Instruction = styled.p`
+  text-align: center;
+`;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
   width: 95%;
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
-  gap: 10px;
+  gap: 2%;
   justify-items: center;
-  margin-top: 30px;
-`;
-/*----------- Counter -----------*/
-export const Counter = styled.div`
-  font-size: 19px;
-  font-weight: bold;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-`;
-/*----------- Title and Instruction-----------*/
-
-export const Title = styled.h1`
-  margin-top: 40px;
-`;
-export const Instruction = styled.p`
-  text-align: center;
-  margin-top: 20px;
 `;
 /*----------- Congrats -----------*/
 
@@ -71,17 +63,20 @@ export const Congrats = styled.p`
   margin-top: 20px;
   font-weight: bold;
 `;
+/*----------- Button Container -----------*/
 
 export const ButtonContainer = styled.div`
   display: flex;
   gap: 20px;
-  margin-top: 20px;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
 `;
 /*----------- Button -----------*/
 
 export const Button = styled.button`
-  height: 45px;
-  min-width: 140px;
+  width: 30%;
+  height: 70%;
   border: none;
   border-radius: 4px;
   background-color: #5035ff;
@@ -90,11 +85,15 @@ export const Button = styled.button`
   cursor: pointer;
   padding: 0 10px;
 `;
+/*----------- Stopwatch Container -----------*/
+
+// In its container
+
 /*----------- BestRecord -----------*/
 
 export const BestRecordDiv = styled.div`
-  position: absolute;
-  bottom: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 export default GlobalStyle;
