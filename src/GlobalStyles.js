@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import devices from "./Helper/devices";
 
 const GlobalStyle = createGlobalStyle`
   
@@ -26,7 +27,7 @@ export const Frame = styled.main`
   border-radius: 5px;
   padding: 30px;
 
-  @media only screen and (max-width: 420px) {
+  @media only screen and (${devices.mobileL}) {
     width: 95vw;
   }
 `;
@@ -51,15 +52,22 @@ export const ConterTimerContainer = styled.div`
 
 /*----------- Title and Instruction-----------*/
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  @media only screen and (${devices.mobileL}) {
+    font-size: 20px;
+  }
+`;
 export const Instruction = styled.p`
   text-align: center;
+  @media only screen and (${devices.mobileL}) {
+    font-size: 13px;
+  }
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
   width: 95%;
   display: grid;
-  grid-template: auto auto / repeat(5, 1fr);
+  grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   gap: 2%;
   justify-items: center;
 `;
@@ -92,8 +100,15 @@ export const Button = styled.button`
   cursor: pointer;
   padding: 0 10px;
 
-  @media only screen and (max-width: 420px) {
+  @media only screen and (${devices.mobileL}) {
     width: 40%;
+  }
+
+  @media only screen and (${devices.mobileM}) {
+    font-size: 14px;
+  }
+  @media only screen and (${devices.mobileS}) {
+    font-size: 11px;
   }
 `;
 /*----------- Stopwatch Container -----------*/
@@ -105,6 +120,13 @@ export const Button = styled.button`
 export const BestRecordDiv = styled.div`
   display: flex;
   align-items: center;
+
+  @media only screen and (${devices.mobileM}) {
+    font-size: 14px;
+  }
+  @media only screen and (${devices.mobileS}) {
+    font-size: 11px;
+  }
 `;
 
 export default GlobalStyle;
