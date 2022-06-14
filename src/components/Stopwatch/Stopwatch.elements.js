@@ -22,6 +22,7 @@ export const Button = styled.button`
   border: 1px solid rgb(177, 177, 177);
   border-radius: 3px;
   cursor: pointer;
+  color: #000;
 
   &:hover {
     filter: brightness(95%);
