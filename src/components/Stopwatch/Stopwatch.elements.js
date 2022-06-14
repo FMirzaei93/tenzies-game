@@ -26,6 +26,10 @@ export const Button = styled.button`
   &:hover {
     filter: brightness(95%);
   }
+
+  @media only screen and (max-width: 420px) {
+    width: 40%;
+  }
 `;
 export const ButtonIcon = styled.i`
   margin-left: 3px;
