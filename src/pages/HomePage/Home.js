@@ -9,6 +9,7 @@ import Confetti from "react-confetti";
 import { nanoid } from "nanoid";
 import { SplitTime } from "../../Helper/utils.module";
 import {
+  ConterTimerContainer,
   DiceContainer,
   Frame,
   InnerContainer,
@@ -91,6 +92,7 @@ export default function Home() {
   function resetHandler() {
     setTime(0);
     setCount(0);
+    setIsPaused(false);
     setIsActive(false);
     setIsWon(false);
     setDiceObjsArray(createObjsArray());
@@ -254,16 +256,18 @@ export default function Home() {
   return (
     <Frame>
       <InnerContainer>
-        {/*-------------- Counter /*--------------*/}
+        <ConterTimerContainer className='row-1'>
+          {/*-------------- Counter /*--------------*/}
 
-        <Counter count={count} />
-        {/*-------------- Timer --------------*/}
+          <Counter count={count} />
+          {/*-------------- Timer --------------*/}
 
-        <Timer time={time} />
+          <Timer time={time} />
+        </ConterTimerContainer>
 
         {/*---------- Title and Instraction ---------*/}
-        <Title>Tenzies</Title>
-        <Instruction>
+        <Title className='row-1'>Tenzies</Title>
+        <Instruction className='row-1'>
           Roll until all dice are the same. Click each die to freeze it at its
           current value between rolls.
         </Instruction>
@@ -273,7 +277,7 @@ export default function Home() {
         {readyBanner ? (
           <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
         ) : (
-          <DiceContainer>{diceElements}</DiceContainer>
+          <DiceContainer className='row-3'>{diceElements}</DiceContainer>
         )}
 
         {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
@@ -281,7 +285,7 @@ export default function Home() {
         {!readyBanner && isWon && <Congrats>Congrats!🎉 You Won!</Congrats>}
 
         {!readyBanner && (
-          <ButtonContainer>
+          <ButtonContainer className='row-1'>
             {
               <Button className='roll' onClick={rollNewDice}>
                 {isWon ? "Back To Menu" : "Roll"}
@@ -310,7 +314,7 @@ export default function Home() {
 
         {/*---------- Best Record Section ---------*/}
 
-        <BestRecordDiv>
+        <BestRecordDiv className='row-1'>
           {bestRecord.minute && bestRecord.second && bestRecord.centisecond
             ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
             : `No record achieved yet!`}
@@ -329,7 +333,7 @@ export default function Home() {
           headerBackgroundColor='#5035ff'
           headerTextColor='white'
           headerHeight='45px'
-          headerText='Foul!'
+          headerText='Error!'
           headerFontSize='20px'
           closeButtonColor='white'
           bodyBackgroundColor='white'
