@@ -1,15 +1,22 @@
 import styled from "styled-components";
 
 export const StopwatchContainer = styled.div`
-  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 `;
-export const StopwatchButtonsContainer = styled.div`
+export const ActiveBtnsContainer = styled.div`
   display: flex;
   gap: 10px;
+  width: 100%;
+  justify-content: center;
+  height: 100%;
+  align-items: flex-end;
 `;
-export const StopwatchButton = styled.button`
-  min-width: 140px;
-  height: 45px;
+export const Button = styled.button`
+  width: 30%;
+  height: 70%;
   font-size: 15px;
   background-color: rgb(218, 204, 255);
   border: 1px solid rgb(177, 177, 177);
@@ -20,7 +27,7 @@ export const StopwatchButton = styled.button`
     filter: brightness(95%);
   }
 `;
-export const StopwatchButtonIcon = styled.i`
+export const ButtonIcon = styled.i`
   margin-left: 3px;
   color: var(--button-dark-bg);
 `;
