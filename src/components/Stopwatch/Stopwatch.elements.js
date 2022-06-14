@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import devices from "../../Helper/devices";
 
 export const StopwatchContainer = styled.div`
   width: 100%;
@@ -28,8 +29,16 @@ export const Button = styled.button`
     filter: brightness(95%);
   }
 
-  @media only screen and (max-width: 420px) {
+  @media only screen and (${devices.mobileL}) {
     width: 40%;
+  }
+
+  @media only screen and (${devices.mobileM}) {
+    font-size: 14px;
+  }
+
+  @media only screen and (${devices.mobileS}) {
+    font-size: 11px;
   }
 `;
 export const ButtonIcon = styled.i`
