@@ -265,8 +265,11 @@ export default function Home() {
           <Timer time={time} />
         </ConterTimerContainer>
 
-        {/*---------- Title and Instraction ---------*/}
+        {/*---------- Title ---------*/}
         <Title className='row-1'>Tenzies</Title>
+
+        {/*---------- Instraction ---------*/}
+
         <Instruction className='row-1'>
           Roll until all dice are the same. Click each die to freeze it at its
           current value between rolls.
@@ -277,40 +280,44 @@ export default function Home() {
         {readyBanner ? (
           <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
         ) : (
-          <DiceContainer className='row-3'>{diceElements}</DiceContainer>
+          <DiceContainer>{diceElements}</DiceContainer>
+        )}
+
+        {readyBanner && <div className='row-2'></div>}
+
+        {/*---------- Congrats  ---------*/}
+
+        {!readyBanner && isWon && (
+          <Congrats className='row-1'>Congrats!🎉 You Won!</Congrats>
         )}
 
         {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
 
-        {!readyBanner && isWon && <Congrats>Congrats!🎉 You Won!</Congrats>}
-
         {!readyBanner && (
           <ButtonContainer className='row-1'>
             {
-              <Button className='roll' onClick={rollNewDice}>
+              <Button onClick={rollNewDice}>
                 {isWon ? "Back To Menu" : "Roll"}
               </Button>
             }
 
-            {isWon && (
-              <Button className='tyrAgain' onClick={tryAgain}>
-                Try again with timer
-              </Button>
-            )}
+            {isWon && <Button onClick={tryAgain}>Try again with timer</Button>}
           </ButtonContainer>
         )}
 
         {/*---------- Stopwatch Container Call ---------*/}
 
-        <StopWatch
-          isActive={isActive}
-          isPaused={isPaused}
-          startHandler={startHandler}
-          pauseResumeHandler={pauseResumeHandler}
-          resetHandler={resetHandler}
-          isWon={isWon}
-          readyBanner={readyBanner}
-        />
+        {!readyBanner && !isWon && (
+          <StopWatch
+            isActive={isActive}
+            isPaused={isPaused}
+            startHandler={startHandler}
+            pauseResumeHandler={pauseResumeHandler}
+            resetHandler={resetHandler}
+            isWon={isWon}
+            readyBanner={readyBanner}
+          />
+        )}
 
         {/*---------- Best Record Section ---------*/}
 
