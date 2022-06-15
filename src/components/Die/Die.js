@@ -5,7 +5,7 @@ import die3 from "../../assets/images/die3.png";
 import die4 from "../../assets/images/die4.png";
 import die5 from "../../assets/images/die5.png";
 import die6 from "../../assets/images/die6.png";
-import { DieFace } from "./Die.elements";
+import { DieFaceDiv } from "./Die.elements";
 
 export default function Die(props) {
   const [bgImage, setBgImage] = React.useState(die1);
@@ -48,5 +48,11 @@ export default function Die(props) {
     }
   }
 
-  return <DieFace style={style} onClick={props.clickHandler}></DieFace>;
+  return (
+    <DieFaceDiv
+      className='row-2'
+      style={style}
+      onClick={props.clickHandler}
+    ></DieFaceDiv>
+  );
 }
