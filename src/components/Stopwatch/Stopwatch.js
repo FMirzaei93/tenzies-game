@@ -24,9 +24,7 @@ function Stopwatch(props) {
 
   return (
     <StopwatchContainer className='row-1'>
-      {!props.readyBanner &&
-        !props.isWon &&
-        (props.isActive ? ActiveButtons : StartButton)}
+      {props.isActive ? ActiveButtons : StartButton}
     </StopwatchContainer>
   );
 }
