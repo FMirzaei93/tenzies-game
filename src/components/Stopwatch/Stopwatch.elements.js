@@ -40,6 +40,10 @@ export const Button = styled.button`
   @media only screen and (${devices.mobileS}) {
     font-size: 11px;
   }
+
+  @media only screen and (${devices.desktop}) {
+    font-size: 20px;
+  }
 `;
 export const ButtonIcon = styled.i`
   margin-left: 3px;
