@@ -50,17 +50,41 @@ export const ConterTimerContainer = styled.div`
   padding: 5px;
 `;
 
-/*----------- Title and Instruction-----------*/
+/*----------- Title -----------*/
 
 export const Title = styled.h1`
   @media only screen and (${devices.mobileL}) {
     font-size: 20px;
   }
+  @media only screen and (${devices.mobileM}) {
+    font-size: 18px;
+  }
+  @media only screen and (${devices.mobileS}) {
+    font-size: 18px;
+  }
+
+  @media only screen and (${devices.desktop}) {
+    font-size: 30px;
+  }
 `;
+
+/*-----------Instruction -----------*/
+
 export const Instruction = styled.p`
   text-align: center;
+
   @media only screen and (${devices.mobileL}) {
     font-size: 13px;
+  }
+  @media only screen and (${devices.mobileM}) {
+    font-size: 11px;
+  }
+  @media only screen and (${devices.mobileS}) {
+    font-size: 9px;
+  }
+
+  @media only screen and (${devices.desktop}) {
+    font-size: 25px;
   }
 `;
 /*----------- Dice Container -----------*/
@@ -68,21 +92,35 @@ export const DiceContainer = styled.div`
   width: 95%;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
-  gap: 2%;
+  gap: 4%;
   justify-items: center;
 `;
 /*----------- Congrats -----------*/
 
 export const Congrats = styled.p`
-  font-size: 20px;
-  margin-top: 20px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+
+  @media only screen and (${devices.mobileL}) {
+    font-size: 16px;
+  }
+  @media only screen and (${devices.mobileM}) {
+    font-size: 14px;
+  }
+  @media only screen and (${devices.mobileS}) {
+    font-size: 12px;
+  }
+
+  @media only screen and (${devices.desktop}) {
+    font-size: 26px;
+  }
 `;
 /*----------- Button Container -----------*/
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 10%;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
@@ -103,12 +141,15 @@ export const Button = styled.button`
   @media only screen and (${devices.mobileL}) {
     width: 40%;
   }
-
   @media only screen and (${devices.mobileM}) {
     font-size: 14px;
   }
   @media only screen and (${devices.mobileS}) {
     font-size: 11px;
+  }
+
+  @media only screen and (${devices.desktop}) {
+    font-size: 20px;
   }
 `;
 /*----------- Stopwatch Container -----------*/
@@ -126,6 +167,9 @@ export const BestRecordDiv = styled.div`
   }
   @media only screen and (${devices.mobileS}) {
     font-size: 11px;
+  }
+  @media only screen and (${devices.desktop}) {
+    font-size: 19px;
   }
 `;
 
