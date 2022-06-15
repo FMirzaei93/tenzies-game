@@ -8,7 +8,7 @@ import {
 
 function Ready(props) {
   return (
-    <ReadyContainer>
+    <ReadyContainer className='row-2'>
       <ReadyText>Ready?</ReadyText>
 
       <ReadyButtonsContainer>
