@@ -1,24 +1,24 @@
-.row-half {
-  height: 7.14%;
-}
 .row-1 {
-  height: 14.28%;
+  height: 12.5%;
 }
 .row-2 {
-  height: 28.56%;
+  height: 25%;
 }
 .row-3 {
-  height: 42.84%;
+  height: 37.5%;
 }
 .row-4 {
-  height: 57.12%;
+  height: 50%;
 }
 .row-5 {
-  height: 71.4%;
+  height: 62.5%;
 }
 .row-6 {
-  height: 85.68%;
+  height: 75%;
 }
 .row-7 {
+  height: 87.5%;
+}
+.row-8 {
   height: 100%;
 }
