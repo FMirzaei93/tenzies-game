@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 13px;
   }
   @media only screen and (${devices.desktop}) {
-    font-size: 20px;
+    font-size: 17px;
   }
   @media only screen and (${devices.bigScreen}) {
     font-size: 50px;
