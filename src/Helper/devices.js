@@ -2,11 +2,11 @@ const sizes = {
   mobileS: "320px",
   mobileM: "375px",
   mobileL: "414px",
-  tablet: "720px",
-  laptop: "1024px",
-  laptopL: "1366px",
+  tabletM: "720px",
+  tabletL: "1024px",
+  laptop: "1366px",
   desktop: "1440px",
-  bigScreen: "2560px",
+  bigScreen: "2559px",
 };
 
 const devices = {
@@ -14,9 +14,9 @@ const devices = {
   mobileS: `min-width: ${sizes.mobileS}`,
   mobileM: `min-width: ${sizes.mobileM}`,
   mobileL: `min-width: ${sizes.mobileL}`,
-  tablet: `min-width: ${sizes.tablet}`,
+  tabletM: `min-width: ${sizes.tabletM}`,
+  tabletL: `min-width: ${sizes.tabletL}`,
   laptop: `min-width: ${sizes.laptop}`,
-  laptopL: `min-width: ${sizes.laptopL}`,
   desktop: `min-width: ${sizes.desktop}`,
   bigScreen: `min-width: ${sizes.bigScreen}`,
 

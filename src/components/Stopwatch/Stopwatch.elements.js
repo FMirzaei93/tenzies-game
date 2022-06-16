@@ -17,8 +17,8 @@ export const ActiveBtnsContainer = styled.div`
 `;
 export const Button = styled.button`
   width: 30%;
-  height: 70%;
-  font-size: 1.5rem;
+  height: 85%;
+  font-size: 1rem;
   background-color: rgb(218, 204, 255);
   border: 1px solid rgb(177, 177, 177);
   border-radius: 3px;

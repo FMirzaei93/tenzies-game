@@ -22,22 +22,22 @@ const GlobalStyle = createGlobalStyle`
     font-size: 8px;
   }
   @media only screen and (${devices.mobileL}) {
-    font-size: 10px;
+    font-size: 9px;
   }
-  @media only screen and (${devices.tablet}) {
-    font-size: 15px;
+  @media only screen and (${devices.tabletM}) {
+    font-size: 13px;
+  }
+  @media only screen and (${devices.tabletL}) {
+    font-size: 14px;
   }
   @media only screen and (${devices.laptop}) {
-    font-size: 15px;
-  }
-  @media only screen and (${devices.laptopL}) {
-    font-size: 17px;
+    font-size: 16px;
   }
   @media only screen and (${devices.desktop}) {
     font-size: 25px;
   }
   @media only screen and (${devices.bigScreen}) {
-    font-size: 40px;
+    font-size: 60px;
   }
  
   }
@@ -55,8 +55,8 @@ export const Container = styled.div`
 /*----------- White Frame -----------*/
 
 export const Frame = styled.main`
-  width: 95vmin;
-  height: 95vmin;
+  width: 90vmin;
+  height: 90vmin;
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 25px;
@@ -77,7 +77,7 @@ export const ConterTimerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 `;
 
 /*----------- Title -----------*/
@@ -91,10 +91,12 @@ export const Title = styled.h1`
 export const Instruction = styled.p`
   text-align: center;
   font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0 5px;
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
-  width: 100%;
+  width: 90%;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   gap: 4%;
@@ -122,12 +124,12 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   width: 30%;
-  height: 70%;
+  height: 85%;
   border: none;
   border-radius: 4px;
   background-color: #5035ff;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
   padding: 0 10px;
 `;
@@ -140,7 +142,8 @@ export const Button = styled.button`
 export const BestRecordDiv = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
 `;
 
 export default GlobalStyle;
