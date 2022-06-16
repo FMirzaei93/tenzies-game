@@ -55,8 +55,8 @@ export const Container = styled.div`
 /*----------- White Frame -----------*/
 
 export const Frame = styled.main`
-  width: 85vmin;
-  height: 85vmin;
+  width: 95vmin;
+  height: 95vmin;
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 25px;
@@ -76,8 +76,8 @@ export const ConterTimerContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
-  font-size: 1.25rem;
+  padding: 10px;
+  font-size: 1.5rem;
 `;
 
 /*----------- Title -----------*/
@@ -90,7 +90,7 @@ export const Title = styled.h1`
 
 export const Instruction = styled.p`
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
@@ -127,7 +127,7 @@ export const Button = styled.button`
   border-radius: 4px;
   background-color: #5035ff;
   color: white;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
   padding: 0 10px;
 `;
@@ -140,7 +140,7 @@ export const Button = styled.button`
 export const BestRecordDiv = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
 `;
 
 export default GlobalStyle;
