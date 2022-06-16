@@ -60,6 +60,10 @@ export const Frame = styled.main`
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 4%;
+
+  @media only screen and (${devices.mobiles}) {
+    height: 70vmax;
+  }
 `;
 /*----------- Inner Container -----------*/
 export const InnerContainer = styled.div`
