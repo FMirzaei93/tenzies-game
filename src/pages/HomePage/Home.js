@@ -282,7 +282,7 @@ export default function Home() {
           {readyBanner ? (
             <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
           ) : (
-            <DiceContainer>{diceElements}</DiceContainer>
+            <DiceContainer className='row-2'>{diceElements}</DiceContainer>
           )}
 
           {readyBanner && <div className='row-2'></div>}
