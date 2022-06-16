@@ -96,7 +96,7 @@ export const Instruction = styled.p`
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
-  width: 90%;
+  width: 95%;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   gap: 4%;
