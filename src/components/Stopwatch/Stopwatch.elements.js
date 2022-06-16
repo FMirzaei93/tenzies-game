@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import devices from "../../Helper/devices";
 
 export const StopwatchContainer = styled.div`
   width: 100%;
@@ -17,7 +18,7 @@ export const ActiveBtnsContainer = styled.div`
 export const Button = styled.button`
   width: 30%;
   height: 85%;
-  font-size: 1rem;
+  font-size: 1.35rem;
   background-color: rgb(218, 204, 255);
   border: 1px solid rgb(177, 177, 177);
   border-radius: 3px;
@@ -26,6 +27,10 @@ export const Button = styled.button`
 
   &:hover {
     filter: brightness(95%);
+  }
+
+  @media only screen and (${devices.mobiles}) {
+    width: 40%;
   }
 `;
 export const ButtonIcon = styled.i`

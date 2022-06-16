@@ -7,7 +7,7 @@ const sizes = {
   tabletL: "1024px",
   laptop: "1366px",
   desktop: "1440px",
-  bigScreen: "2560px",
+  bigScreen: "2559px",
 };
 
 const devices = {

@@ -25,19 +25,19 @@ const GlobalStyle = createGlobalStyle`
     font-size: 9px;
   }
   @media only screen and (${devices.tabletM}) {
-    font-size: 13px;
+    font-size: 10px;
   }
   @media only screen and (${devices.tabletL}) {
-    font-size: 14px;
+    font-size: 11px;
   }
   @media only screen and (${devices.laptop}) {
-    font-size: 16px;
+    font-size: 13px;
   }
   @media only screen and (${devices.desktop}) {
-    font-size: 25px;
+    font-size: 20px;
   }
   @media only screen and (${devices.bigScreen}) {
-    font-size: 60px;
+    font-size: 50px;
   }
  
   }
@@ -59,7 +59,7 @@ export const Frame = styled.main`
   height: 95vmin;
   background-color: #f5f5f5;
   border-radius: 5px;
-  padding: 4%;
+  padding: 4.5%;
 
   @media only screen and (${devices.mobiles}) {
     height: 70vmax;
@@ -81,45 +81,46 @@ export const CounterTimerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 `;
 
 /*----------- Title -----------*/
 
 export const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 2.5rem;
 `;
 
 /*-----------Instruction -----------*/
 
 export const Instruction = styled.p`
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
   padding: 5px 5px 0 5px;
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
-  width: 90%;
+  width: 95%;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   gap: 4%;
   justify-items: center;
-  padding: 5%;
+  align-items: baseline;
+  padding: 3%;
 `;
 /*----------- Congrats -----------*/
 
 export const Congrats = styled.p`
   font-weight: bold;
   display: flex;
-  align-items: flex-end;
-  font-size: 1.25rem;
+  align-items: center;
+  font-size: 1.75rem;
 `;
 /*----------- Button Container -----------*/
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 10%;
+  gap: 5%;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
@@ -133,9 +134,13 @@ export const Button = styled.button`
   border-radius: 4px;
   background-color: #5035ff;
   color: white;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   cursor: pointer;
   padding: 0 10px;
+
+  @media only screen and (${devices.mobiles}) {
+    width: 40%;
+  }
 `;
 /*----------- Stopwatch Container -----------*/
 
@@ -146,7 +151,7 @@ export const Button = styled.button`
 export const BestRecordDiv = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
 `;
 
