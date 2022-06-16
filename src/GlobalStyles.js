@@ -55,8 +55,8 @@ export const Container = styled.div`
 /*----------- White Frame -----------*/
 
 export const Frame = styled.main`
-  width: 90vmin;
-  height: 90vmin;
+  width: 95vmin;
+  height: 95vmin;
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 25px;
@@ -96,7 +96,7 @@ export const Instruction = styled.p`
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
-  width: 95%;
+  width: 90%;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   gap: 4%;
