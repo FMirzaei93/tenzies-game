@@ -9,12 +9,11 @@ export const ReadyContainer = styled.div`
   align-items: center;
 `;
 export const ReadyText = styled.p`
-  /* font-size: 25px; */
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
 `;
 
 export const ReadyButtonsContainer = styled.div`
@@ -35,5 +34,5 @@ export const ReadyButton = styled.button`
   color: white;
   cursor: pointer;
   padding: 0 10px;
-  font-size: 0.75rem;
+  font-size: 1.25rem;
 `;
