@@ -19,11 +19,6 @@ const devices = {
   laptop: `min-width: ${sizes.laptop}`,
   desktop: `min-width: ${sizes.desktop}`,
   bigScreen: `min-width: ${sizes.bigScreen}`,
-
-  // mobileL: `max-width: ${sizes.mobileL}`,
-  // mobileM: `max-width: ${sizes.mobileM}`,
-  // mobileS: `max-width: ${sizes.mobileS}`,
-  // desktop: `min-width: ${sizes.desktop}`,
 };
 
 export default devices;
