@@ -15,20 +15,7 @@ export const ReadyText = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media only screen and (${devices.mobileL}) {
-    font-size: 20px;
-  }
-  @media only screen and (${devices.mobileM}) {
-    font-size: 18px;
-  }
-  @media only screen and (${devices.mobileS}) {
-    font-size: 16px;
-  }
-
-  @media only screen and (${devices.desktop}) {
-    font-size: 30px;
-  }
+  font-size: 1rem;
 `;
 
 export const ReadyButtonsContainer = styled.div`
@@ -49,18 +36,5 @@ export const ReadyButton = styled.button`
   color: white;
   cursor: pointer;
   padding: 0 10px;
-
-  @media only screen and (${devices.mobileL}) {
-    font-size: 12px;
-  }
-  @media only screen and (${devices.mobileM}) {
-    font-size: 10px;
-  }
-  @media only screen and (${devices.mobileS}) {
-    font-size: 8px;
-  }
-
-  @media only screen and (${devices.desktop}) {
-    font-size: 22px;
-  }
+  font-size: 0.75rem;
 `;

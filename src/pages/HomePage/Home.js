@@ -9,6 +9,7 @@ import Confetti from "react-confetti";
 import { nanoid } from "nanoid";
 import { SplitTime } from "../../Helper/utils.module";
 import {
+  Container,
   ConterTimerContainer,
   DiceContainer,
   Frame,
@@ -254,101 +255,105 @@ export default function Home() {
 
   // ----------------- Return ------------------
   return (
-    <Frame>
-      <InnerContainer>
-        <ConterTimerContainer className='row-1'>
-          {/*-------------- Counter /*--------------*/}
+    <Container>
+      <Frame>
+        <InnerContainer>
+          <ConterTimerContainer className='row-1'>
+            {/*-------------- Counter /*--------------*/}
 
-          <Counter count={count} />
-          {/*-------------- Timer --------------*/}
+            <Counter count={count} />
+            {/*-------------- Timer --------------*/}
 
-          <Timer time={time} />
-        </ConterTimerContainer>
+            <Timer time={time} />
+          </ConterTimerContainer>
 
-        {/*---------- Title ---------*/}
-        <Title className='row-1'>Tenzies</Title>
+          {/*---------- Title ---------*/}
+          <Title className='row-1'>Tenzies</Title>
 
-        {/*---------- Instraction ---------*/}
+          {/*---------- Instraction ---------*/}
 
-        <Instruction className='row-1'>
-          Roll until all dice are the same. Click each die to freeze it at its
-          current value between rolls.
-        </Instruction>
+          <Instruction className='row-1'>
+            Roll until all dice are the same. Click each die to freeze it at its
+            current value between rolls.
+          </Instruction>
 
-        {/*---------- Ready And Dice Container ---------*/}
+          {/*---------- Ready And Dice Container ---------*/}
 
-        {readyBanner ? (
-          <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
-        ) : (
-          <DiceContainer>{diceElements}</DiceContainer>
-        )}
+          {readyBanner ? (
+            <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
+          ) : (
+            <DiceContainer>{diceElements}</DiceContainer>
+          )}
 
-        {readyBanner && <div className='row-2'></div>}
+          {readyBanner && <div className='row-2'></div>}
 
-        {/*---------- Congrats  ---------*/}
+          {/*---------- Congrats  ---------*/}
 
+          {!readyBanner && isWon && (
+            <Congrats className='row-1'>Congrats!🎉 You Won!</Congrats>
+          )}
+
+          {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
+
+          {!readyBanner && (
+            <ButtonContainer className='row-1'>
+              {
+                <Button onClick={rollNewDice}>
+                  {isWon ? "Back To Menu" : "Roll"}
+                </Button>
+              }
+
+              {isWon && (
+                <Button onClick={tryAgain}>Try again with timer</Button>
+              )}
+            </ButtonContainer>
+          )}
+
+          {/*---------- Stopwatch Container Call ---------*/}
+
+          {!readyBanner && !isWon && (
+            <StopWatch
+              isActive={isActive}
+              isPaused={isPaused}
+              startHandler={startHandler}
+              pauseResumeHandler={pauseResumeHandler}
+              resetHandler={resetHandler}
+              isWon={isWon}
+              readyBanner={readyBanner}
+            />
+          )}
+
+          {/*---------- Best Record Section ---------*/}
+
+          <BestRecordDiv className='row-1'>
+            {bestRecord.minute && bestRecord.second && bestRecord.centisecond
+              ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
+              : `No record achieved yet!`}
+          </BestRecordDiv>
+        </InnerContainer>
+        {/*---------- Confetti Lib ---------*/}
         {!readyBanner && isWon && (
-          <Congrats className='row-1'>Congrats!🎉 You Won!</Congrats>
+          <Confetti height={window.innerHeight} width={window.innerWidth} />
         )}
+        {/*---------- Dialog Box ----------*/}
 
-        {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
-
-        {!readyBanner && (
-          <ButtonContainer className='row-1'>
-            {
-              <Button onClick={rollNewDice}>
-                {isWon ? "Back To Menu" : "Roll"}
-              </Button>
-            }
-
-            {isWon && <Button onClick={tryAgain}>Try again with timer</Button>}
-          </ButtonContainer>
-        )}
-
-        {/*---------- Stopwatch Container Call ---------*/}
-
-        {!readyBanner && !isWon && (
-          <StopWatch
-            isActive={isActive}
-            isPaused={isPaused}
-            startHandler={startHandler}
-            pauseResumeHandler={pauseResumeHandler}
-            resetHandler={resetHandler}
-            isWon={isWon}
-            readyBanner={readyBanner}
+        {isOpen && (
+          <Dialogbox
+            closeBox={closeDialogboxHandler}
+            modalWidth='350px'
+            headerBackgroundColor='#5035ff'
+            headerTextColor='white'
+            headerHeight='45px'
+            headerText='Error!'
+            headerFontSize='20px'
+            closeButtonColor='white'
+            bodyBackgroundColor='white'
+            bodyTextColor='black'
+            bodyFontSize='20px'
+            bodyText='Please click the Resume button first😉'
           />
         )}
-
-        {/*---------- Best Record Section ---------*/}
-
-        <BestRecordDiv className='row-1'>
-          {bestRecord.minute && bestRecord.second && bestRecord.centisecond
-            ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
-            : `No record achieved yet!`}
-        </BestRecordDiv>
-      </InnerContainer>
-      {/*---------- Confetti Lib ---------*/}
-      {!readyBanner && isWon && (
-        <Confetti height={window.innerHeight} width={window.innerWidth} />
-      )}
-      {/*---------- Dialog Box ----------*/}
-
-      {isOpen && (
-        <Dialogbox
-          closeBox={closeDialogboxHandler}
-          modalWidth='350px'
-          headerBackgroundColor='#5035ff'
-          headerTextColor='white'
-          headerHeight='45px'
-          headerText='Error!'
-          headerFontSize='20px'
-          closeButtonColor='white'
-          bodyBackgroundColor='white'
-          bodyTextColor='black'
-          bodyFontSize='20px'
-          bodyText='Please click the Resume button first😉'
-        />
-      )}
-    </Frame>
+      </Frame>
+    </Container>
   );
 }

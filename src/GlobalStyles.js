@@ -10,26 +10,56 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #0b2434;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #0b2434; 
   }
 
+  html{
+   
+  @media only screen and (${devices.mobileS}) {
+    font-size: 7px;
+  }
+  @media only screen and (${devices.mobileM}) {
+    font-size: 8px;
+  }
+  @media only screen and (${devices.mobileL}) {
+    font-size: 10px;
+  }
+  @media only screen and (${devices.tablet}) {
+    font-size: 15px;
+  }
+  @media only screen and (${devices.laptop}) {
+    font-size: 15px;
+  }
+  @media only screen and (${devices.laptopL}) {
+    font-size: 17px;
+  }
+  @media only screen and (${devices.desktop}) {
+    font-size: 25px;
+  }
+  @media only screen and (${devices.bigScreen}) {
+    font-size: 40px;
+  }
+ 
+  }
+
+`;
+
+/*----------- Main Container -----------*/
+export const Container = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 /*----------- White Frame -----------*/
 
 export const Frame = styled.main`
-  width: 70vh;
-  height: 75vh;
+  width: 85vmin;
+  height: 85vmin;
   background-color: #f5f5f5;
   border-radius: 5px;
-  padding: 30px;
-
-  @media only screen and (${devices.mobileL}) {
-    width: 95vw;
-  }
+  padding: 25px;
 `;
 /*----------- Inner Container -----------*/
 export const InnerContainer = styled.div`
@@ -38,7 +68,6 @@ export const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   box-shadow: 0px 0px 15px 4px rgb(218, 204, 255);
 `;
 
@@ -48,73 +77,37 @@ export const ConterTimerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  font-size: 1.25rem;
 `;
 
 /*----------- Title -----------*/
 
 export const Title = styled.h1`
-  @media only screen and (${devices.mobileL}) {
-    font-size: 20px;
-  }
-  @media only screen and (${devices.mobileM}) {
-    font-size: 18px;
-  }
-  @media only screen and (${devices.mobileS}) {
-    font-size: 18px;
-  }
-
-  @media only screen and (${devices.desktop}) {
-    font-size: 30px;
-  }
+  font-size: 2rem;
 `;
 
 /*-----------Instruction -----------*/
 
 export const Instruction = styled.p`
   text-align: center;
-
-  @media only screen and (${devices.mobileL}) {
-    font-size: 13px;
-  }
-  @media only screen and (${devices.mobileM}) {
-    font-size: 11px;
-  }
-  @media only screen and (${devices.mobileS}) {
-    font-size: 9px;
-  }
-
-  @media only screen and (${devices.desktop}) {
-    font-size: 25px;
-  }
+  font-size: 1rem;
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
-  width: 95%;
+  width: 100%;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   gap: 4%;
   justify-items: center;
+  padding: 5%;
 `;
 /*----------- Congrats -----------*/
 
 export const Congrats = styled.p`
   font-weight: bold;
   display: flex;
-  align-items: center;
-
-  @media only screen and (${devices.mobileL}) {
-    font-size: 16px;
-  }
-  @media only screen and (${devices.mobileM}) {
-    font-size: 14px;
-  }
-  @media only screen and (${devices.mobileS}) {
-    font-size: 12px;
-  }
-
-  @media only screen and (${devices.desktop}) {
-    font-size: 26px;
-  }
+  align-items: flex-end;
+  font-size: 1.25rem;
 `;
 /*----------- Button Container -----------*/
 
@@ -134,23 +127,9 @@ export const Button = styled.button`
   border-radius: 4px;
   background-color: #5035ff;
   color: white;
-  font-size: 17px;
+  font-size: 1rem;
   cursor: pointer;
   padding: 0 10px;
-
-  @media only screen and (${devices.mobileL}) {
-    width: 40%;
-  }
-  @media only screen and (${devices.mobileM}) {
-    font-size: 14px;
-  }
-  @media only screen and (${devices.mobileS}) {
-    font-size: 11px;
-  }
-
-  @media only screen and (${devices.desktop}) {
-    font-size: 20px;
-  }
 `;
 /*----------- Stopwatch Container -----------*/
 
@@ -161,16 +140,7 @@ export const Button = styled.button`
 export const BestRecordDiv = styled.div`
   display: flex;
   align-items: center;
-
-  @media only screen and (${devices.mobileM}) {
-    font-size: 14px;
-  }
-  @media only screen and (${devices.mobileS}) {
-    font-size: 11px;
-  }
-  @media only screen and (${devices.desktop}) {
-    font-size: 19px;
-  }
+  font-size: 1rem;
 `;
 
 export default GlobalStyle;

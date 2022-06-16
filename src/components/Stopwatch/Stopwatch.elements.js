@@ -18,7 +18,7 @@ export const ActiveBtnsContainer = styled.div`
 export const Button = styled.button`
   width: 30%;
   height: 70%;
-  font-size: 15px;
+  font-size: 1rem;
   background-color: rgb(218, 204, 255);
   border: 1px solid rgb(177, 177, 177);
   border-radius: 3px;
@@ -27,22 +27,6 @@ export const Button = styled.button`
 
   &:hover {
     filter: brightness(95%);
-  }
-
-  @media only screen and (${devices.mobileL}) {
-    width: 40%;
-  }
-
-  @media only screen and (${devices.mobileM}) {
-    font-size: 14px;
-  }
-
-  @media only screen and (${devices.mobileS}) {
-    font-size: 11px;
-  }
-
-  @media only screen and (${devices.desktop}) {
-    font-size: 20px;
   }
 `;
 export const ButtonIcon = styled.i`
