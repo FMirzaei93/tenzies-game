@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import devices from "../../Helper/devices";
 
 export const ReadyContainer = styled.div`
   background-color: #e7e3ff;
