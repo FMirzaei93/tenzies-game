@@ -72,7 +72,7 @@ export const InnerContainer = styled.div`
 `;
 
 /*----------- Counter + Timer -----------*/
-export const ConterTimerContainer = styled.div`
+export const CounterTimerContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
