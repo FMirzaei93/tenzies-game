@@ -1,16 +1,17 @@
 const sizes = {
+  mobiles: "599px",
   mobileS: "320px",
   mobileM: "375px",
   mobileL: "414px",
   tabletM: "720px",
   tabletL: "1024px",
-  laptop: "1365px", //1366
+  laptop: "1366px",
   desktop: "1440px",
-  bigScreen: "2559px", //2560
+  bigScreen: "2560px",
 };
 
 const devices = {
-  tiny: `max-width: ${sizes.mobileS}`,
+  mobiles: `max-width: ${sizes.mobiles}`,
   mobileS: `min-width: ${sizes.mobileS}`,
   mobileM: `min-width: ${sizes.mobileM}`,
   mobileL: `min-width: ${sizes.mobileL}`,
