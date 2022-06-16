@@ -59,7 +59,7 @@ export const Frame = styled.main`
   height: 95vmin;
   background-color: #f5f5f5;
   border-radius: 5px;
-  padding: 25px;
+  padding: 4%;
 `;
 /*----------- Inner Container -----------*/
 export const InnerContainer = styled.div`
@@ -90,9 +90,9 @@ export const Title = styled.h1`
 
 export const Instruction = styled.p`
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
-  padding: 0 5px;
+  padding: 5px 5px 0 5px;
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
