@@ -10,7 +10,7 @@ import { nanoid } from "nanoid";
 import { SplitTime } from "../../Helper/utils.module";
 import {
   Container,
-  ConterTimerContainer,
+  CounterTimerContainer,
   DiceContainer,
   Frame,
   InnerContainer,
@@ -21,9 +21,6 @@ import {
   Button,
   BestRecordDiv,
 } from "../../GlobalStyles";
-// OR:
-//import * as homeElements from "./Home.elements";
-// Example: "homeElements.DiceContainer"
 
 export default function Home() {
   const [isWon, setIsWon] = React.useState(false);
@@ -258,14 +255,14 @@ export default function Home() {
     <Container>
       <Frame>
         <InnerContainer>
-          <ConterTimerContainer className='row-1'>
+          <CounterTimerContainer className='row-1'>
             {/*-------------- Counter /*--------------*/}
 
             <Counter count={count} />
             {/*-------------- Timer --------------*/}
 
             <Timer time={time} />
-          </ConterTimerContainer>
+          </CounterTimerContainer>
 
           {/*---------- Title ---------*/}
           <Title className='row-1'>Tenzies</Title>
@@ -282,7 +279,7 @@ export default function Home() {
           {readyBanner ? (
             <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
           ) : (
-            <DiceContainer className='row-2'>{diceElements}</DiceContainer>
+            <DiceContainer>{diceElements}</DiceContainer>
           )}
 
           {readyBanner && <div className='row-2'></div>}
