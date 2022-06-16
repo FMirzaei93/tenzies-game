@@ -4,9 +4,9 @@ const sizes = {
   mobileL: "414px",
   tabletM: "720px",
   tabletL: "1024px",
-  laptop: "1366px",
+  laptop: "1365px", //1366
   desktop: "1440px",
-  bigScreen: "2559px",
+  bigScreen: "2559px", //2560
 };
 
 const devices = {
