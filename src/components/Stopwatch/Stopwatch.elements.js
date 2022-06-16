@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import devices from "../../Helper/devices";
 
 export const StopwatchContainer = styled.div`
   width: 100%;
