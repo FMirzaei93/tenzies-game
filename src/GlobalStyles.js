@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: #0b2434; 
+    font-family: 'Times New Roman', Times, serif;
   }
 
   html{
@@ -128,7 +129,7 @@ export const ButtonContainer = styled.div`
 /*----------- Button -----------*/
 
 export const Button = styled.button`
-  width: 30%;
+  width: 35%;
   height: 85%;
   border: none;
   border-radius: 4px;
@@ -140,6 +141,10 @@ export const Button = styled.button`
 
   @media only screen and (${devices.mobiles}) {
     width: 40%;
+  }
+
+  @media only screen and (${devices.longsL}) and (${devices.longsU}) {
+    height: 70%;
   }
 `;
 /*----------- Stopwatch Container -----------*/

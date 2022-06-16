@@ -16,7 +16,7 @@ export const ActiveBtnsContainer = styled.div`
   align-items: flex-end;
 `;
 export const Button = styled.button`
-  width: 30%;
+  width: 35%;
   height: 85%;
   font-size: 1.35rem;
   background-color: rgb(218, 204, 255);
@@ -31,6 +31,9 @@ export const Button = styled.button`
 
   @media only screen and (${devices.mobiles}) {
     width: 40%;
+  }
+  @media only screen and (${devices.longsL}) and (${devices.longsU}) {
+    height: 70%;
   }
 `;
 export const ButtonIcon = styled.i`
