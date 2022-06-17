@@ -33,7 +33,7 @@ export const Button = styled.button`
     width: 40%;
   }
   @media only screen and (${devices.longsL}) and (${devices.longsU}) {
-    height: 70%;
+    height: 65%;
   }
 `;
 export const ButtonIcon = styled.i`
