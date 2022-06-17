@@ -144,7 +144,7 @@ export const Button = styled.button`
   }
 
   @media only screen and (${devices.longsL}) and (${devices.longsU}) {
-    height: 70%;
+    height: 65%;
   }
 `;
 /*----------- Stopwatch Container -----------*/
