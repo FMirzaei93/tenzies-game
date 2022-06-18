@@ -2,14 +2,14 @@ const sizes = {
   longsL: "800px",
   longsU: "900px",
   mobiles: "599px",
-  mobileS: "320px",
-  mobileM: "375px",
-  mobileL: "414px",
-  tabletM: "720px",
-  tabletL: "1024px",
-  laptop: "1366px",
-  desktop: "1441px", //1441
-  bigScreen: "2550px", //2560
+  mobileS: "319px",
+  mobileM: "374px",
+  mobileL: "413px",
+  tabletM: "719px",
+  tabletL: "1023px",
+  laptop: "1365px",
+  desktop: "1450px",
+  bigScreen: "2559px",
 };
 
 const devices = {

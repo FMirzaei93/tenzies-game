@@ -279,8 +279,7 @@ export default function Home() {
           {readyBanner ? (
             <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
           ) : (
-            <DiceContainer>{diceElements}</DiceContainer>
-            // <DiceContainer className="row-2">{diceElements}</DiceContainer> Don't, because app needs more than this to set the grid items properly.
+            <DiceContainer className='row-3'>{diceElements}</DiceContainer>
           )}
 
           {readyBanner && <div className='row-2'></div>}

@@ -48,11 +48,5 @@ export default function Die(props) {
     }
   }
 
-  return (
-    <DieFaceDiv
-      className='row-2'
-      style={style}
-      onClick={props.clickHandler}
-    ></DieFaceDiv>
-  );
+  return <DieFaceDiv style={style} onClick={props.clickHandler}></DieFaceDiv>;
 }

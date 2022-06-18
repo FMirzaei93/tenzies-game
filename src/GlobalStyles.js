@@ -97,17 +97,16 @@ export const Instruction = styled.p`
   text-align: center;
   font-size: 1.5rem;
   font-weight: 500;
-  padding: 5px 5px 0 5px;
+  padding: 0 5px;
 `;
 /*----------- Dice Container -----------*/
 export const DiceContainer = styled.div`
-  width: 95%;
+  width: 85%;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
-  gap: 4%;
+  grid-gap: 5% 3%;
   justify-items: center;
-  align-items: baseline;
-  padding: 3%;
+  margin-bottom: 5%;
 `;
 /*----------- Congrats -----------*/
 
@@ -130,7 +129,7 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   width: 35%;
-  height: 85%;
+  height: 80%;
   border: none;
   border-radius: 4px;
   background-color: #5035ff;
