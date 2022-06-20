@@ -287,8 +287,6 @@ export default function Home() {
               <DiceContainer className='row-3'>{diceElements}</DiceContainer>
             )}
 
-            {readyBanner && <div className='row-2'></div>}
-
             {/*---------- Congrats  ---------*/}
 
             {!readyBanner && isWon && (

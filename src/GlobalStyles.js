@@ -74,6 +74,7 @@ export const InnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 15px 4px rgb(218, 204, 255);
+  position: relative;
 `;
 
 /*----------- Counter + Timer -----------*/
@@ -106,7 +107,7 @@ export const DiceContainer = styled.div`
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   grid-gap: 5% 3%;
   justify-items: center;
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
 `;
 /*----------- Congrats -----------*/
 
@@ -157,6 +158,8 @@ export const BestRecordDiv = styled.div`
   align-items: center;
   font-size: 1.5rem;
   font-weight: 500;
+  position: absolute;
+  bottom: 0;
 `;
 
 export default GlobalStyle;
