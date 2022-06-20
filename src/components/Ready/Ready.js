@@ -5,10 +5,15 @@ import {
   ReadyButtonsContainer,
   ReadyButton,
 } from "./Ready.elements";
+import devices from "../../Helper/devices";
+import { useMediaQuery } from "react-responsive";
 
 function Ready(props) {
+  const isLongMobiles = useMediaQuery({
+    query: `(${devices.longsL}) and (${devices.longsU})`,
+  });
   return (
-    <ReadyContainer className='row-3'>
+    <ReadyContainer className={isLongMobiles ? "row-2" : "row-3"}>
       <ReadyText>Ready?</ReadyText>
 
       <ReadyButtonsContainer>
