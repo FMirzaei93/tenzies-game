@@ -1,14 +1,15 @@
 import React from "react";
-import Die from "../../components/Die/Die";
-import StopWatch from "../../components/Stopwatch/Stopwatch";
-import Counter from "../../components/Counter/Counter";
-import Timer from "../../components/Timer/Timer";
-import Ready from "../../components/Ready/Ready";
+import Die from "./components/Die/Die";
+import StopWatch from "./components/Stopwatch/Stopwatch";
+import Counter from "./components/Counter/Counter";
+import Timer from "./components/Timer/Timer";
+import Ready from "./components/Ready/Ready";
 import Confetti from "react-confetti";
 import { nanoid } from "nanoid";
-import { SplitTime } from "../../Helper/utils.module";
-import ModalComponent from "../../components/Modal/ModalComponent";
+import { SplitTime } from "./Helper/utils.module";
+import ModalComponent from "./components/Modal/ModalComponent";
 import { ModalProvider } from "styled-react-modal";
+import GlobalStyle from "./GlobalStyles";
 
 import {
   Container,
@@ -22,7 +23,7 @@ import {
   ButtonContainer,
   Button,
   BestRecordDiv,
-} from "../../GlobalStyles";
+} from "./GlobalStyles";
 
 export default function Home() {
   const [isWon, setIsWon] = React.useState(false);
@@ -254,94 +255,97 @@ export default function Home() {
 
   // ----------------- Return ------------------
   return (
-    <Container>
-      <Frame>
-        <InnerContainer>
-          <CounterTimerContainer className='row-1'>
-            {/*-------------- Counter /*--------------*/}
+    <div>
+      <GlobalStyle />
+      <Container>
+        <Frame>
+          <InnerContainer>
+            <CounterTimerContainer className='row-1'>
+              {/*-------------- Counter /*--------------*/}
 
-            <Counter count={count} />
-            {/*-------------- Timer --------------*/}
+              <Counter count={count} />
+              {/*-------------- Timer --------------*/}
 
-            <Timer time={time} />
-          </CounterTimerContainer>
+              <Timer time={time} />
+            </CounterTimerContainer>
 
-          {/*---------- Title ---------*/}
-          <Title className='row-1'>Tenzies</Title>
+            {/*---------- Title ---------*/}
+            <Title className='row-1'>Tenzies</Title>
 
-          {/*---------- Instraction ---------*/}
+            {/*---------- Instraction ---------*/}
 
-          <Instruction className='row-1'>
-            Roll until all dice are the same. Click each die to freeze it at its
-            current value between rolls.
-          </Instruction>
+            <Instruction className='row-1'>
+              Roll until all dice are the same. Click each die to freeze it at
+              its current value between rolls.
+            </Instruction>
 
-          {/*---------- Ready And Dice Container ---------*/}
+            {/*---------- Ready And Dice Container ---------*/}
 
-          {readyBanner ? (
-            <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
-          ) : (
-            <DiceContainer className='row-3'>{diceElements}</DiceContainer>
-          )}
+            {readyBanner ? (
+              <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
+            ) : (
+              <DiceContainer className='row-3'>{diceElements}</DiceContainer>
+            )}
 
-          {readyBanner && <div className='row-2'></div>}
+            {readyBanner && <div className='row-2'></div>}
 
-          {/*---------- Congrats  ---------*/}
+            {/*---------- Congrats  ---------*/}
 
+            {!readyBanner && isWon && (
+              <Congrats className='row-1'>Congrats!🎉 You Won!</Congrats>
+            )}
+
+            {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
+
+            {!readyBanner && (
+              <ButtonContainer className='row-1'>
+                {
+                  <Button onClick={rollNewDice}>
+                    {isWon ? "Back To Menu" : "Roll"}
+                  </Button>
+                }
+
+                {isWon && (
+                  <Button onClick={tryAgain}>Try again with timer</Button>
+                )}
+              </ButtonContainer>
+            )}
+
+            {/*---------- Stopwatch Container Call ---------*/}
+
+            {!readyBanner && !isWon && (
+              <StopWatch
+                isActive={isActive}
+                isPaused={isPaused}
+                startHandler={startHandler}
+                pauseResumeHandler={pauseResumeHandler}
+                resetHandler={resetHandler}
+                isWon={isWon}
+                readyBanner={readyBanner}
+              />
+            )}
+
+            {/*---------- Best Record Section ---------*/}
+
+            <BestRecordDiv className='row-1'>
+              {bestRecord.minute && bestRecord.second && bestRecord.centisecond
+                ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
+                : `No record achieved yet!`}
+            </BestRecordDiv>
+          </InnerContainer>
+          {/*---------- Confetti Lib ---------*/}
           {!readyBanner && isWon && (
-            <Congrats className='row-1'>Congrats!🎉 You Won!</Congrats>
+            <Confetti height={window.innerHeight} width={window.innerWidth} />
           )}
+          {/*---------- Dialog Box ----------*/}
 
-          {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
-
-          {!readyBanner && (
-            <ButtonContainer className='row-1'>
-              {
-                <Button onClick={rollNewDice}>
-                  {isWon ? "Back To Menu" : "Roll"}
-                </Button>
-              }
-
-              {isWon && (
-                <Button onClick={tryAgain}>Try again with timer</Button>
-              )}
-            </ButtonContainer>
+          {showDialogbox && (
+            <ModalProvider>
+              <ModalComponent closeDialogboxHandler={closeDialogboxHandler} />
+            </ModalProvider>
           )}
-
-          {/*---------- Stopwatch Container Call ---------*/}
-
-          {!readyBanner && !isWon && (
-            <StopWatch
-              isActive={isActive}
-              isPaused={isPaused}
-              startHandler={startHandler}
-              pauseResumeHandler={pauseResumeHandler}
-              resetHandler={resetHandler}
-              isWon={isWon}
-              readyBanner={readyBanner}
-            />
-          )}
-
-          {/*---------- Best Record Section ---------*/}
-
-          <BestRecordDiv className='row-1'>
-            {bestRecord.minute && bestRecord.second && bestRecord.centisecond
-              ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
-              : `No record achieved yet!`}
-          </BestRecordDiv>
-        </InnerContainer>
-        {/*---------- Confetti Lib ---------*/}
-        {!readyBanner && isWon && (
-          <Confetti height={window.innerHeight} width={window.innerWidth} />
-        )}
-        {/*---------- Dialog Box ----------*/}
-
-        {showDialogbox && (
-          <ModalProvider>
-            <ModalComponent closeDialogboxHandler={closeDialogboxHandler} />
-          </ModalProvider>
-        )}
-      </Frame>
-    </Container>
+        </Frame>
+      </Container>
+    </div>
   );
 }

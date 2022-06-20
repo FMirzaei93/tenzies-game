@@ -1,14 +1,8 @@
-import Home from "./pages/HomePage/Home";
-import GlobalStyle from "./GlobalStyles";
+import Home from "./Home";
 import styles from "./styles.css";
 
 function App() {
-  return (
-    <div>
-      <GlobalStyle />
-      <Home />
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
