@@ -74,6 +74,7 @@ export const InnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 15px 4px rgb(218, 204, 255);
+  position: relative;
 `;
 
 /*----------- Counter + Timer -----------*/
@@ -160,6 +161,8 @@ export const BestRecordDiv = styled.div`
   align-items: center;
   font-size: 1.5rem;
   font-weight: 500;
+  position: absolute;
+  bottom: 0;
 `;
 
 export default GlobalStyle;
