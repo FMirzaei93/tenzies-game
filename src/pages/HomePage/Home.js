@@ -4,10 +4,12 @@ import StopWatch from "../../components/Stopwatch/Stopwatch";
 import Counter from "../../components/Counter/Counter";
 import Timer from "../../components/Timer/Timer";
 import Ready from "../../components/Ready/Ready";
-import Dialogbox from "../../components/Dialogbox/Dialogbox";
 import Confetti from "react-confetti";
 import { nanoid } from "nanoid";
 import { SplitTime } from "../../Helper/utils.module";
+import ModalComponent from "../../components/Modal/ModalComponent";
+import { ModalProvider } from "styled-react-modal";
+
 import {
   Container,
   CounterTimerContainer,
@@ -26,10 +28,10 @@ export default function Home() {
   const [isWon, setIsWon] = React.useState(false);
   const [readyBanner, setReadyBanner] = React.useState(false);
   const [count, setCount] = React.useState(0);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [showDialogbox, setShowDialogbox] = React.useState(false);
 
   const [bestRecord, setBestRecord] = React.useState(
-    // In cases: If it's the first time user uses the app OR when the user refreshes the page
+    // Either when it's the first time the user uses the app OR when the user refreshes the page
     localStorage.getItem("recordedTimeObj") !== null
       ? {
           // localStorage.getItem("recordedTimeObj"): a string object of string members ("{minute:'00', second:'11', centisecond:'48'}")
@@ -157,7 +159,7 @@ export default function Home() {
             return item.isHeld ? item : createDieObject();
           });
         });
-      } else setIsOpen(true);
+      } else setShowDialogbox(true);
     }
   }
 
@@ -183,7 +185,7 @@ export default function Home() {
         });
       });
     } else {
-      setIsOpen(true);
+      setShowDialogbox(true);
     }
   }
 
@@ -245,9 +247,9 @@ export default function Home() {
     }
   }
 
-  //------------------- Change isOpen State -------------------
+  //------------------- Change showDialogbox State -------------------
   function closeDialogboxHandler() {
-    setIsOpen(false);
+    setShowDialogbox(false);
   }
 
   // ----------------- Return ------------------
@@ -334,21 +336,10 @@ export default function Home() {
         )}
         {/*---------- Dialog Box ----------*/}
 
-        {isOpen && (
-          <Dialogbox
-            closeBox={closeDialogboxHandler}
-            modalWidth='350px'
-            headerBackgroundColor='#5035ff'
-            headerTextColor='white'
-            headerHeight='45px'
-            headerText='Error!'
-            headerFontSize='20px'
-            closeButtonColor='white'
-            bodyBackgroundColor='white'
-            bodyTextColor='black'
-            bodyFontSize='20px'
-            bodyText='Please click the Resume button first😉'
-          />
+        {showDialogbox && (
+          <ModalProvider>
+            <ModalComponent closeDialogboxHandler={closeDialogboxHandler} />
+          </ModalProvider>
         )}
       </Frame>
     </Container>
