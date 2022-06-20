@@ -4,7 +4,7 @@ It's an app using React library for creating the Tenzies game.
 ### Tenzies Game:
 The player rolls a set of 10 dice. Quickly looks at them and decides which number to go for. Then puts all their dice with that number aside, and roll again for the remaining dice. They keep rolling until all ten of their dice show the same number. This game can be done with the existing timer to save the user’s best time record.
 
-#### You can see the live version of the project [here](http://tenzies-app-fmirzaei93.vercel.app)
+#### You can see the live version of the project [here](https://tenzies-responsive-styled-components.vercel.app)
 
 
 ## Initial Script
