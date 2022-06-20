@@ -18,7 +18,7 @@ export default function ModalComponent(props) {
         <ModalHeader>
           <ModalTitle>Error!</ModalTitle>
           <ModalButton onClick={props.closeDialogboxHandler}>
-            <i class='far fa-window-close'></i>
+            <i className='far fa-window-close'></i>
           </ModalButton>
         </ModalHeader>
 
