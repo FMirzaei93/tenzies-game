@@ -10,6 +10,8 @@ import { SplitTime } from "./Helper/utils.module";
 import ModalComponent from "./components/Modal/ModalComponent";
 import { ModalProvider } from "styled-react-modal";
 import GlobalStyle from "./GlobalStyles";
+import { useMediaQuery } from "react-responsive";
+import devices from "./Helper/devices";
 
 import {
   Container,
@@ -30,6 +32,9 @@ export default function Home() {
   const [readyBanner, setReadyBanner] = React.useState(false);
   const [count, setCount] = React.useState(0);
   const [showDialogbox, setShowDialogbox] = React.useState(false);
+  const isLongMobiles = useMediaQuery({
+    query: `(${devices.longsL}) and (${devices.longsU})`,
+  });
 
   const [bestRecord, setBestRecord] = React.useState(
     // Either when it's the first time the user uses the app OR when the user refreshes the page
@@ -60,11 +65,11 @@ export default function Home() {
         },
         10
         // It says: do the function every 10/1000 = 1/100 seconds
-        //For showing centiseconds, we need to devide 1 second to 100 parts, so every second is composed of 100*(1/100 second),
+        //For showing centiseconds, we need to devide 1 second to 100 parts, so every second is composed of 100*(1/100 second)
       );
     } else {
       if (isWon && time !== 0) {
-        // If the player is won and they have played with timer:
+        // If the player wins and they have played with timer:
         CheckForTheNewRecord();
       }
 
@@ -284,7 +289,9 @@ export default function Home() {
             {readyBanner ? (
               <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
             ) : (
-              <DiceContainer className='row-3'>{diceElements}</DiceContainer>
+              <DiceContainer className={isLongMobiles ? "row-2" : "row-3"}>
+                {diceElements}
+              </DiceContainer>
             )}
 
             {readyBanner && <div className='row-2'></div>}
