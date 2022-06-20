@@ -107,10 +107,6 @@ export const DiceContainer = styled.div`
   grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   grid-gap: 5% 3%;
   justify-items: center;
-  margin-bottom: 5%;
-  @media only screen and (${devices.longsL}) and (${devices.longsU}) {
-    grid-gap: 7%;
-  }
 `;
 /*----------- Congrats -----------*/
 
