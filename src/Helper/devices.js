@@ -2,9 +2,10 @@ const sizes = {
   //Heights
   longsL: "800px",
   longsU: "900px",
-  mobiles: "599px",
 
   // Widths
+  mobiles: "450px",
+  smalls: "1px",
   mobileS: "319px",
   mobileM: "374px",
   mobileL: "413px",
@@ -19,6 +20,7 @@ const devices = {
   longsL: `min-height: ${sizes.longsL}`,
   longsU: `max-height: ${sizes.longsU}`,
   mobiles: `max-width: ${sizes.mobiles}`,
+  smalls: `min-width: ${sizes.smalls}`,
   mobileS: `min-width: ${sizes.mobileS}`,
   mobileM: `min-width: ${sizes.mobileM}`,
   mobileL: `min-width: ${sizes.mobileL}`,

@@ -33,7 +33,7 @@ export default function Home() {
   const [count, setCount] = React.useState(0);
   const [showDialogbox, setShowDialogbox] = React.useState(false);
   const isLongMobiles = useMediaQuery({
-    query: `(${devices.longsL}) and (${devices.longsU})`,
+    query: `(${devices.longsL}) and (${devices.longsU}) and (${devices.mobiles})`,
   });
 
   const [bestRecord, setBestRecord] = React.useState(

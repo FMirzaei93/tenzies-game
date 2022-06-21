@@ -15,7 +15,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html{
-   
+    @media only screen and (${devices.smalls}) {
+    font-size: 5px;
+  }
   @media only screen and (${devices.mobileS}) {
     font-size: 7px;
   }
@@ -142,7 +144,7 @@ export const Button = styled.button`
     width: 40%;
   }
 
-  @media only screen and (${devices.longsL}) and (${devices.longsU}) {
+  @media only screen and (${devices.longsL}) and (${devices.longsU}) and (${devices.mobiles}) {
     height: 65%;
   }
 `;
