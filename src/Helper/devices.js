@@ -1,7 +1,10 @@
 const sizes = {
+  //Heights
   longsL: "800px",
   longsU: "900px",
   mobiles: "599px",
+
+  // Widths
   mobileS: "319px",
   mobileM: "374px",
   mobileL: "413px",
