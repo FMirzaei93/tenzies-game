@@ -1,4 +1,5 @@
 import React from "react";
+import { Time } from "../utils.module";
 
 export const TimerStatuses = {
   Idle: "idle",
@@ -6,16 +7,6 @@ export const TimerStatuses = {
   Running: "running",
 };
 
-// TODO:
-// 1. Consider using React.useReducer(), it would make more sense
-// since some of our states depend on each other
-//
-// 2. Also consider making time as an object with some properties
-// - time.value --> return the time as number
-// - time.inCentiSecond --> return the time in centi second
-// - time.inSeconds --> return the time in seconds
-// - time.inMinutes --> return the time in monutes
-// - time.asString --> return the time in human readable format: mm:ss:cc
 export const useTimer = () => {
   const [time, setTime] = React.useState(0);
   const [timerStatus, setTimerStatuses] = React.useState(TimerStatuses.Idle);
@@ -61,7 +52,7 @@ export const useTimer = () => {
     pauseTimer,
     resetTimer,
     startTimer,
-    time,
+    time: Time(time),
     timerStatus,
   };
 };

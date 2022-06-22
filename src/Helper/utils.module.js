@@ -48,42 +48,9 @@ export function createObjsArray() {
 }
 
 export function isNewBestRecord(newTime, bestRecord) {
-  const minute = splitTime(newTime).minute;
-  const second = splitTime(newTime).second;
-  const centisecond = splitTime(newTime).centisecond;
+  if (bestRecord == null) return true;
 
-  const currentTimeObject = {
-    minute,
-    second,
-    centisecond,
-  };
-
-  // I have removed some of these, since we are unnecesary reading the store multiple times here
-  // bestRecord itself is the up do to date state in our component, we don't need to read it from the store
-  if (bestRecord !== null) {
-    // Comparison between current time and the user's record
-    if (parseInt(currentTimeObject.minute) < parseInt(bestRecord.minute)) {
-      return true;
-    } else {
-      if (parseInt(currentTimeObject.minute) === parseInt(bestRecord.minute)) {
-        if (parseInt(currentTimeObject.second) < parseInt(bestRecord.second)) {
-          return true;
-        } else {
-          if (
-            parseInt(currentTimeObject.second) === parseInt(bestRecord.second)
-          ) {
-            if (
-              parseInt(currentTimeObject.centisecond) <
-              parseInt(bestRecord.centisecond)
-            ) {
-              return true;
-            }
-          }
-        }
-      }
-    }
-  }
-  return false;
+  return newTime.toString() < bestRecord.toString();
 }
 
 export const Time = (val) => {

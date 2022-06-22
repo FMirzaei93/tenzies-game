@@ -6,7 +6,7 @@ import Timer from "./components/Timer/Timer";
 import Ready from "./components/Ready/Ready";
 import Confetti from "react-confetti";
 
-import { isNewBestRecord } from "./Helper/utils.module";
+import { isNewBestRecord, Time } from "./Helper/utils.module";
 import ModalComponent from "./components/Modal/ModalComponent";
 import GlobalStyle from "./GlobalStyles";
 import { useMediaQuery } from "react-responsive";
@@ -29,19 +29,31 @@ import { useLocalStorage, useTimer } from "./Helper/hooks";
 import { TimerStatuses } from "./Helper/hooks/useTimer";
 import reducer, { initialState } from "./reducers";
 
+const localStorageOptions = {
+  serialise: JSON.stringify,
+  deserialise: (str) => {
+    const obj = JSON.parse(str);
+    return obj === null ? null : Time(obj.value);
+  },
+};
+
 export default function Home() {
   const isLongMobiles = useMediaQuery({
     query: `(${devices.longsL}) and (${devices.longsU}) and (${devices.mobiles})`,
   });
 
-  const [bestRecord, setBestRecord] = useLocalStorage("recordedTimeObj", null);
+  const [bestRecord, setBestRecord] = useLocalStorage(
+    "recordedTimeObj",
+    null,
+    localStorageOptions
+  );
   const { pauseTimer, resetTimer, startTimer, time, timerStatus } = useTimer();
   const [{ count, dices, isWon, readyBanner, showDialog }, dispatch] =
     React.useReducer(reducer, initialState);
 
   React.useEffect(() => {
-    if (isWon && time > 0 && isNewBestRecord(time, bestRecord)) {
-      setBestRecord(bestRecord);
+    if (isWon && time.value > 0 && isNewBestRecord(time, bestRecord)) {
+      setBestRecord(time);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWon]);
@@ -170,7 +182,7 @@ export default function Home() {
             ) : null}
             <BestRecordDiv className="row-1">
               {bestRecord
-                ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
+                ? `Your Best Record: ${bestRecord.toString()}`
                 : `No record achieved yet!`}
             </BestRecordDiv>
           </InnerContainer>
