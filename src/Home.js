@@ -195,7 +195,7 @@ export default function Home() {
     }
   }
 
-  //------------------- Saving Best Record in Local Storage --------------------
+  //------------------- Save the user's best time record --------------------
 
   function CheckForTheNewRecord() {
     const minute = SplitTime(time).minute;
@@ -211,10 +211,10 @@ export default function Home() {
     const recordedTimeObj = localStorage.getItem("recordedTimeObj");
 
     if (recordedTimeObj !== null) {
-      // It means that it's not the first time the player is playing with timer and saving records process
+      // It means that it's not the first time the player is playing with the timer and saving records process
       const savedObj = JSON.parse(recordedTimeObj);
 
-      // Comparison between current time and the user's record
+      // Comparison between the current time and the user's best time record
       if (parseInt(currentTimeObject.minute) < parseInt(savedObj.minute)) {
         saveNewRecord();
       } else {
@@ -236,7 +236,7 @@ export default function Home() {
         }
       }
     } else {
-      // If it's the first time the player played with timer
+      // If it was the first time the user played with the timer
       localStorage.setItem(
         "recordedTimeObj",
         JSON.stringify(currentTimeObject)
@@ -253,7 +253,7 @@ export default function Home() {
     }
   }
 
-  //------------------- Change showDialogbox State -------------------
+  //------------------- Changing the showDialogbox State -------------------
   function closeDialogboxHandler() {
     setShowDialogbox(false);
   }
@@ -266,7 +266,7 @@ export default function Home() {
         <Frame>
           <InnerContainer>
             <CounterTimerContainer className='row-1'>
-              {/*-------------- Counter /*--------------*/}
+              {/*-------------- Counter --------------*/}
 
               <Counter count={count} />
               {/*-------------- Timer --------------*/}
