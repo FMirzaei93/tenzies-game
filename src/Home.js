@@ -9,6 +9,7 @@ import Confetti from "react-confetti";
 import {
   createDieObject,
   createObjsArray,
+  isNewBestRecord,
 } from "./Helper/utils.module";
 import ModalComponent from "./components/Modal/ModalComponent";
 import { ModalProvider } from "styled-react-modal";
@@ -47,8 +48,8 @@ export default function Home() {
   const { pauseTimer, resetTimer, startTimer, time, timerStatus } = useTimer();
 
   React.useEffect(() => {
-    if (isWon && time > 0) {
-      CheckForTheNewRecord();
+    if (isWon && time > 0 && isNewBestRecord(time, bestRecord)) {
+      setBestRecord(bestRecord);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWon]);
@@ -146,55 +147,6 @@ export default function Home() {
       });
     } else {
       setShowDialogbox(true);
-    }
-  }
-
-
-  function CheckForTheNewRecord() {
-    const minute = SplitTime(time).minute;
-    const second = SplitTime(time).second;
-    const centisecond = SplitTime(time).centisecond;
-
-    const currentTimeObject = {
-      minute: minute,
-      second: second,
-      centisecond: centisecond,
-    };
-
-    // I have removed some of these, since we are unnecesary reading the store multiple times here
-    // bestRecord itself is the up do to date state in our component, we don't need to read it from the store
-    if (bestRecord !== null) {
-      // Comparison between current time and the user's record
-      if (parseInt(currentTimeObject.minute) < parseInt(bestRecord.minute)) {
-        saveNewRecord();
-      } else {
-        if (
-          parseInt(currentTimeObject.minute) === parseInt(bestRecord.minute)
-        ) {
-          if (
-            parseInt(currentTimeObject.second) < parseInt(bestRecord.second)
-          ) {
-            saveNewRecord();
-          } else {
-            if (
-              parseInt(currentTimeObject.second) === parseInt(bestRecord.second)
-            ) {
-              if (
-                parseInt(currentTimeObject.centisecond) <
-                parseInt(bestRecord.centisecond)
-              ) {
-                saveNewRecord();
-              }
-            }
-          }
-        }
-      }
-    } else {
-      setBestRecord(currentTimeObject);
-    }
-
-    function saveNewRecord() {
-      setBestRecord(currentTimeObject);
     }
   }
 
