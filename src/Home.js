@@ -195,7 +195,7 @@ export default function Home() {
     }
   }
 
-  //------------------- Save the user's best time record --------------------
+  //------------------- Saving the user's best time record --------------------
 
   function CheckForTheNewRecord() {
     const minute = SplitTime(time).minute;
