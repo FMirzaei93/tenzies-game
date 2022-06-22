@@ -5,8 +5,11 @@ import Counter from "./components/Counter/Counter";
 import Timer from "./components/Timer/Timer";
 import Ready from "./components/Ready/Ready";
 import Confetti from "react-confetti";
-import { nanoid } from "nanoid";
-import { SplitTime } from "./Helper/utils.module";
+
+import {
+  createDieObject,
+  createObjsArray,
+} from "./Helper/utils.module";
 import ModalComponent from "./components/Modal/ModalComponent";
 import { ModalProvider } from "styled-react-modal";
 import GlobalStyle from "./GlobalStyles";
@@ -99,29 +102,6 @@ export default function Home() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, diceObjsArray);
-
-  function createRandomNum() {
-    return Math.ceil(Math.random() * 6);
-    // Math.random(x) :returns a pseudo-random number that 0=< x <1
-    // Math.floor(x) : teturns the greates integer <=x
-    // Math.ceil(x) : teturns the smallest integer > x
-  }
-
-  function createDieObject() {
-    return {
-      id: nanoid(),
-      value: createRandomNum(),
-      isHeld: false,
-    };
-  }
-
-  function createObjsArray() {
-    const array = [];
-    for (let i = 0; i < 10; i++) {
-      array.push(createDieObject());
-    }
-    return array;
-  }
 
   function rollNewDice() {
     if (isWon) {

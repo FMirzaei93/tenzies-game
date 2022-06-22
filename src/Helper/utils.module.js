@@ -1,6 +1,6 @@
-export function SplitTime(time) {
-  //
+import { nanoid } from "nanoid";
 
+export function splitTime(time) {
   const minute = ("0" + (Math.floor(time / 6000) % 60)).slice(-2);
   //--> 3)the quotient of the previous part will be minutes, but what if it exceeds 60?(considering 'hour' part - currently not needed)
   //So we need to devide it by 60 again, that will be (props.time / 100)/60 = (props.time / 6000)
@@ -23,3 +23,27 @@ export function SplitTime(time) {
 
   return timeObject;
 }
+
+export function createRandomNum() {
+  return Math.ceil(Math.random() * 6);
+  // Math.random(x) :returns a pseudo-random number that 0=< x <1
+  // Math.floor(x) : teturns the greates integer <=x
+  // Math.ceil(x) : teturns the smallest integer > x
+}
+
+export function createDieObject() {
+  return {
+    id: nanoid(),
+    value: createRandomNum(),
+    isHeld: false,
+  };
+}
+
+export function createObjsArray() {
+  const array = [];
+  for (let i = 0; i < 10; i++) {
+    array.push(createDieObject());
+  }
+  return array;
+}
+
