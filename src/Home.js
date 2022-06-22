@@ -141,7 +141,13 @@ export default function Home() {
               </DiceContainer>
             )}
             {!readyBanner && isWon ? (
-              <Congrats className="row-1">Congrats!🎉 You Won!</Congrats>
+              <React.Fragment>
+                <Congrats className="row-1">Congrats!🎉 You Won!</Congrats>
+                <Confetti
+                  height={window.innerHeight}
+                  width={window.innerWidth}
+                />
+              </React.Fragment>
             ) : null}
             {!readyBanner && (
               <ButtonContainer className="row-1">
@@ -168,9 +174,6 @@ export default function Home() {
                 : `No record achieved yet!`}
             </BestRecordDiv>
           </InnerContainer>
-          {!readyBanner && isWon ? (
-            <Confetti height={window.innerHeight} width={window.innerWidth} />
-          ) : null}
           <ModalComponent
             show={showDialog}
             closeDialogboxHandler={closeDialogboxHandler}
