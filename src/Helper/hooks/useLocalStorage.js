@@ -36,3 +36,5 @@ export const useLocalStorage = (
 
   return React.useMemo(() => [data, setData], [data]);
 };
+
+export default useLocalStorage;
