@@ -26,6 +26,7 @@ import {
   Button,
   BestRecordDiv,
 } from "./GlobalStyles";
+import { useLocalStorage } from "./Helper/hooks";
 
 export default function Home() {
   const [isWon, setIsWon] = React.useState(false);
@@ -36,18 +37,7 @@ export default function Home() {
     query: `(${devices.longsL}) and (${devices.longsU}) and (${devices.mobiles})`,
   });
 
-  const [bestRecord, setBestRecord] = React.useState(
-    // Either when it's the first time the user uses the app OR when the user refreshes the page
-    localStorage.getItem("recordedTimeObj") !== null
-      ? {
-          // localStorage.getItem("recordedTimeObj"): a string object of string members ("{minute:'00', second:'11', centisecond:'48'}")
-          minute: JSON.parse(localStorage.getItem("recordedTimeObj")).minute,
-          second: JSON.parse(localStorage.getItem("recordedTimeObj")).second,
-          centisecond: JSON.parse(localStorage.getItem("recordedTimeObj"))
-            .centisecond,
-        }
-      : {}
-  );
+  const [bestRecord, setBestRecord] = useLocalStorage("recordedTimeObj", null);
 
   //------------------------ Stopwatch Part ----------------------
 
@@ -208,26 +198,27 @@ export default function Home() {
       centisecond: centisecond,
     };
 
-    const recordedTimeObj = localStorage.getItem("recordedTimeObj");
-
-    if (recordedTimeObj !== null) {
-      // It means that it's not the first time the player is playing with timer and saving records process
-      const savedObj = JSON.parse(recordedTimeObj);
-
+    // I have removed some of these, since we are unnecesary reading the store multiple times here
+    // bestRecord itself is the up do to date state in our component, we don't need to read it from the store
+    if (bestRecord !== null) {
       // Comparison between current time and the user's record
-      if (parseInt(currentTimeObject.minute) < parseInt(savedObj.minute)) {
+      if (parseInt(currentTimeObject.minute) < parseInt(bestRecord.minute)) {
         saveNewRecord();
       } else {
-        if (parseInt(currentTimeObject.minute) === parseInt(savedObj.minute)) {
-          if (parseInt(currentTimeObject.second) < parseInt(savedObj.second)) {
+        if (
+          parseInt(currentTimeObject.minute) === parseInt(bestRecord.minute)
+        ) {
+          if (
+            parseInt(currentTimeObject.second) < parseInt(bestRecord.second)
+          ) {
             saveNewRecord();
           } else {
             if (
-              parseInt(currentTimeObject.second) === parseInt(savedObj.second)
+              parseInt(currentTimeObject.second) === parseInt(bestRecord.second)
             ) {
               if (
                 parseInt(currentTimeObject.centisecond) <
-                parseInt(savedObj.centisecond)
+                parseInt(bestRecord.centisecond)
               ) {
                 saveNewRecord();
               }
@@ -236,19 +227,10 @@ export default function Home() {
         }
       }
     } else {
-      // If it's the first time the player played with timer
-      localStorage.setItem(
-        "recordedTimeObj",
-        JSON.stringify(currentTimeObject)
-      );
       setBestRecord(currentTimeObject);
     }
 
     function saveNewRecord() {
-      localStorage.setItem(
-        "recordedTimeObj",
-        JSON.stringify(currentTimeObject)
-      );
       setBestRecord(currentTimeObject);
     }
   }
@@ -265,7 +247,7 @@ export default function Home() {
       <Container>
         <Frame>
           <InnerContainer>
-            <CounterTimerContainer className='row-1'>
+            <CounterTimerContainer className="row-1">
               {/*-------------- Counter /*--------------*/}
 
               <Counter count={count} />
@@ -275,11 +257,11 @@ export default function Home() {
             </CounterTimerContainer>
 
             {/*---------- Title ---------*/}
-            <Title className='row-1'>Tenzies</Title>
+            <Title className="row-1">Tenzies</Title>
 
             {/*---------- Instraction ---------*/}
 
-            <Instruction className='row-1'>
+            <Instruction className="row-1">
               Roll until all dice are the same. Click each die to freeze it at
               its current value between rolls.
             </Instruction>
@@ -297,13 +279,13 @@ export default function Home() {
             {/*---------- Congrats  ---------*/}
 
             {!readyBanner && isWon && (
-              <Congrats className='row-1'>Congrats!🎉 You Won!</Congrats>
+              <Congrats className="row-1">Congrats!🎉 You Won!</Congrats>
             )}
 
             {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
 
             {!readyBanner && (
-              <ButtonContainer className='row-1'>
+              <ButtonContainer className="row-1">
                 {
                   <Button onClick={rollNewDice}>
                     {isWon ? "Back To Menu" : "Roll"}
@@ -332,8 +314,10 @@ export default function Home() {
 
             {/*---------- Best Record Section ---------*/}
 
-            <BestRecordDiv className='row-1'>
-              {bestRecord.minute && bestRecord.second && bestRecord.centisecond
+            {/* Initially we don't have a bestRecord so we guard our component, otherwise,
+              we should expect the object to contain every data we need */}
+            <BestRecordDiv className="row-1">
+              {bestRecord
                 ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
                 : `No record achieved yet!`}
             </BestRecordDiv>
