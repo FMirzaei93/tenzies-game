@@ -6,11 +6,7 @@ import Timer from "./components/Timer/Timer";
 import Ready from "./components/Ready/Ready";
 import Confetti from "react-confetti";
 
-import {
-  createDieObject,
-  createObjsArray,
-  isNewBestRecord,
-} from "./Helper/utils.module";
+import { isNewBestRecord } from "./Helper/utils.module";
 import ModalComponent from "./components/Modal/ModalComponent";
 import { ModalProvider } from "styled-react-modal";
 import GlobalStyle from "./GlobalStyles";
@@ -32,20 +28,17 @@ import {
 } from "./GlobalStyles";
 import { useLocalStorage, useTimer } from "./Helper/hooks";
 import { TimerStatuses } from "./Helper/hooks/useTimer";
+import reducer, { initialState } from "./reducers";
 
 export default function Home() {
   const isLongMobiles = useMediaQuery({
     query: `(${devices.longsL}) and (${devices.longsU}) and (${devices.mobiles})`,
   });
 
-  const [isWon, setIsWon] = React.useState(false);
-  const [readyBanner, setReadyBanner] = React.useState(false);
-  const [count, setCount] = React.useState(0);
-  const [showDialogbox, setShowDialogbox] = React.useState(false);
-  const [isActive, setIsActive] = React.useState(false);
-
   const [bestRecord, setBestRecord] = useLocalStorage("recordedTimeObj", null);
   const { pauseTimer, resetTimer, startTimer, time, timerStatus } = useTimer();
+  const [{ count, dices, isWon, readyBanner, showDialog }, dispatch] =
+    React.useReducer(reducer, initialState);
 
   React.useEffect(() => {
     if (isWon && time > 0 && isNewBestRecord(time, bestRecord)) {
@@ -54,12 +47,26 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWon]);
 
+  React.useEffect(() => {
+    const allHeld = dices.every((item) => item.isHeld);
+    const firstValue = dices[0].value;
+    const allEqualValue = dices.every((item) => item.value === firstValue);
+
+    if (allHeld && allEqualValue) {
+      pauseTimer();
+      dispatch({ type: "game-over" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dices]);
+
   function startHandler() {
     startTimer();
-    setCount(0);
-    setIsActive(true);
-    setIsWon(false);
-    setDiceObjsArray(createObjsArray());
+    dispatch({ type: "reset" });
+  }
+
+  function resetHandler() {
+    resetTimer();
+    dispatch({ type: "reset" });
   }
 
   function pauseResumeHandler() {
@@ -72,16 +79,35 @@ export default function Home() {
     }
   }
 
-  function resetHandler() {
-    resetTimer();
-    setCount(0);
-    setIsActive(false);
-    setIsWon(false);
-    setDiceObjsArray(createObjsArray());
+  function rollNewDice() {
+    if (isWon) {
+      resetHandler();
+    } else {
+      if (timerStatus !== TimerStatuses.Paused) {
+        return dispatch({ type: "shuffle" });
+      } else {
+        return dispatch({ type: "dialog", payload: true });
+      }
+    }
   }
 
-  const [diceObjsArray, setDiceObjsArray] = React.useState(createObjsArray());
-  const diceElements = diceObjsArray.map((item) => (
+  function dieClickHandler(id) {
+    if (timerStatus !== TimerStatuses.Paused) {
+      dispatch({ type: "hold", payload: id });
+    } else {
+      dispatch({ type: "dialog", payload: true });
+    }
+  }
+
+  function tryAgain() {
+    dispatch({ type: "banner", payload: true });
+  }
+
+  function closeDialogboxHandler() {
+    dispatch({ type: "dialog", payload: false });
+  }
+
+  const diceElements = dices.map((item) => (
     <Die
       key={item.id}
       value={item.value}
@@ -89,70 +115,6 @@ export default function Home() {
       clickHandler={() => dieClickHandler(item.id)}
     />
   ));
-
-  React.useEffect(() => {
-    const allHeld = diceObjsArray.every((item) => item.isHeld);
-    const firstValue = diceObjsArray[0].value;
-    const allEqualValue = diceObjsArray.every(
-      (item) => item.value === firstValue
-    );
-
-    if (allHeld && allEqualValue) {
-      pauseTimer();
-      setIsWon(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, diceObjsArray);
-
-  function rollNewDice() {
-    if (isWon) {
-      // The button text is: Back To Menu
-      setIsWon(false);
-      setDiceObjsArray(createObjsArray());
-      resetHandler();
-    } else {
-      //The button text is: Roll
-
-      if (timerStatus !== TimerStatuses.Paused) {
-        setCount((prevCount) => prevCount + 1);
-        setDiceObjsArray((prevArray) => {
-          return prevArray.map((item) => {
-            return item.isHeld ? item : createDieObject();
-          });
-        });
-      } else setShowDialogbox(true);
-    }
-  }
-
-  function tryAgain() {
-    setReadyBanner(true);
-  }
-
-  function yes() {
-    setReadyBanner(false);
-    startHandler();
-  }
-
-  function cancel() {
-    setReadyBanner(false);
-    resetHandler();
-  }
-
-  function dieClickHandler(id) {
-    if (timerStatus !== TimerStatuses.Paused) {
-      setDiceObjsArray((prevArray) => {
-        return prevArray.map((item) => {
-          return item.id === id ? { ...item, isHeld: !item.isHeld } : item;
-        });
-      });
-    } else {
-      setShowDialogbox(true);
-    }
-  }
-
-  function closeDialogboxHandler() {
-    setShowDialogbox(false);
-  }
 
   return (
     <div>
@@ -170,7 +132,10 @@ export default function Home() {
               its current value between rolls.
             </Instruction>
             {readyBanner ? (
-              <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
+              <Ready
+                yesClickHandler={startHandler}
+                cancelClickHandler={resetHandler}
+              />
             ) : (
               <DiceContainer className={isLongMobiles ? "row-2" : "row-3"}>
                 {diceElements}
@@ -192,13 +157,10 @@ export default function Home() {
             )}
             {!readyBanner && !isWon ? (
               <StopWatch
-                isActive={isActive}
-                isPaused={timerStatus === TimerStatuses.Paused}
-                startHandler={startHandler}
                 pauseResumeHandler={pauseResumeHandler}
                 resetHandler={resetHandler}
-                isWon={isWon}
-                readyBanner={readyBanner}
+                startHandler={startHandler}
+                timerStatus={timerStatus}
               />
             ) : null}
             <BestRecordDiv className="row-1">
@@ -211,7 +173,7 @@ export default function Home() {
             <Confetti height={window.innerHeight} width={window.innerWidth} />
           ) : null}
 
-          {showDialogbox ? (
+          {showDialog ? (
             <ModalProvider>
               <ModalComponent closeDialogboxHandler={closeDialogboxHandler} />
             </ModalProvider>

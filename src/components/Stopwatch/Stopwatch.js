@@ -1,4 +1,5 @@
 import React from "react";
+import { TimerStatuses } from "../../Helper/hooks/useTimer";
 import {
   StopwatchContainer,
   ActiveBtnsContainer,
@@ -6,25 +7,33 @@ import {
   ButtonIcon,
 } from "./Stopwatch.elements";
 
-function Stopwatch(props) {
+function Stopwatch({
+  pauseResumeHandler,
+  resetHandler,
+  startHandler,
+  timerStatus,
+}) {
+  const isPaused = timerStatus === TimerStatuses.Paused;
+  const isIdle = timerStatus === TimerStatuses.Idle;
+
   const StartButton = (
-    <Button onClick={props.startHandler}>
+    <Button onClick={startHandler}>
       Start with timer
-      <ButtonIcon className='fas fa-stopwatch'></ButtonIcon>
+      <ButtonIcon className="fas fa-stopwatch"></ButtonIcon>
     </Button>
   );
   const ActiveButtons = (
     <ActiveBtnsContainer>
-      <Button onClick={props.resetHandler}>Reset</Button>
-      <Button onClick={props.pauseResumeHandler}>
-        {props.isPaused ? "Resume" : "Pause"}
+      <Button onClick={resetHandler}>Reset</Button>
+      <Button onClick={pauseResumeHandler}>
+        {isPaused ? "Resume" : "Pause"}
       </Button>
     </ActiveBtnsContainer>
   );
 
   return (
-    <StopwatchContainer className='row-1'>
-      {props.isActive ? ActiveButtons : StartButton}
+    <StopwatchContainer className="row-1">
+      {isIdle ? StartButton : ActiveButtons}
     </StopwatchContainer>
   );
 }
