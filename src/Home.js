@@ -26,7 +26,8 @@ import {
   Button,
   BestRecordDiv,
 } from "./GlobalStyles";
-import { useLocalStorage } from "./Helper/hooks";
+import { useLocalStorage, useTimer } from "./Helper/hooks";
+import { TimerStatuses } from "./Helper/hooks/useTimer";
 
 export default function Home() {
   const [isWon, setIsWon] = React.useState(false);
@@ -42,53 +43,37 @@ export default function Home() {
   //------------------------ Stopwatch Part ----------------------
 
   const [isActive, setIsActive] = React.useState(false);
-  const [isPaused, setIsPaused] = React.useState(false);
-  const [time, setTime] = React.useState(0);
+
+  const { pauseTimer, resetTimer, startTimer, time, timerStatus } = useTimer();
 
   React.useEffect(() => {
-    let interval = null;
-
-    if (isActive && !isPaused && !isWon) {
-      interval = setInterval(
-        () => {
-          setTime((prevTime) => prevTime + 1);
-        },
-        10
-        // It says: do the function every 10/1000 = 1/100 seconds
-        //For showing centiseconds, we need to devide 1 second to 100 parts, so every second is composed of 100*(1/100 second)
-      );
-    } else {
-      if (isWon && time !== 0) {
-        // If the player wins and they have played with timer:
-        CheckForTheNewRecord();
-      }
-
-      clearInterval(interval);
+    if (isWon && time > 0) {
+      CheckForTheNewRecord();
     }
-    return () => {
-      clearInterval(interval);
-      // To avoid memory leak
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive, isPaused, isWon]);
+  }, [isWon]);
 
   function startHandler() {
-    setTime(0);
+    startTimer();
     setCount(0);
     setIsActive(true);
-    setIsPaused(false);
     setIsWon(false);
     setDiceObjsArray(createObjsArray());
   }
 
   function pauseResumeHandler() {
-    setIsPaused(!isPaused);
+    if (timerStatus === TimerStatuses.Paused) {
+      startTimer();
+    }
+
+    if (timerStatus === TimerStatuses.Running) {
+      pauseTimer();
+    }
   }
 
   function resetHandler() {
-    setTime(0);
+    resetTimer();
     setCount(0);
-    setIsPaused(false);
     setIsActive(false);
     setIsWon(false);
     setDiceObjsArray(createObjsArray());
@@ -112,7 +97,10 @@ export default function Home() {
       (item) => item.value === firstValue
     );
 
-    allHeld && allEqualValue && setIsWon(true);
+    if (allHeld && allEqualValue) {
+      pauseTimer();
+      setIsWon(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, diceObjsArray);
 
@@ -148,7 +136,7 @@ export default function Home() {
     } else {
       //The button text is: Roll
 
-      if (!isPaused) {
+      if (timerStatus !== TimerStatuses.Paused) {
         setCount((prevCount) => prevCount + 1);
         setDiceObjsArray((prevArray) => {
           return prevArray.map((item) => {
@@ -174,7 +162,7 @@ export default function Home() {
   }
 
   function dieClickHandler(id) {
-    if (!isPaused) {
+    if (timerStatus !== TimerStatuses.Paused) {
       setDiceObjsArray((prevArray) => {
         return prevArray.map((item) => {
           return item.id === id ? { ...item, isHeld: !item.isHeld } : item;
@@ -303,7 +291,7 @@ export default function Home() {
             {!readyBanner && !isWon && (
               <StopWatch
                 isActive={isActive}
-                isPaused={isPaused}
+                isPaused={timerStatus === TimerStatuses.Paused}
                 startHandler={startHandler}
                 pauseResumeHandler={pauseResumeHandler}
                 resetHandler={resetHandler}
