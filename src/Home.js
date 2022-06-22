@@ -8,7 +8,6 @@ import Confetti from "react-confetti";
 
 import { isNewBestRecord } from "./Helper/utils.module";
 import ModalComponent from "./components/Modal/ModalComponent";
-import { ModalProvider } from "styled-react-modal";
 import GlobalStyle from "./GlobalStyles";
 import { useMediaQuery } from "react-responsive";
 import devices from "./Helper/devices";
@@ -172,12 +171,10 @@ export default function Home() {
           {!readyBanner && isWon ? (
             <Confetti height={window.innerHeight} width={window.innerWidth} />
           ) : null}
-
-          {showDialog ? (
-            <ModalProvider>
-              <ModalComponent closeDialogboxHandler={closeDialogboxHandler} />
-            </ModalProvider>
-          ) : null}
+          <ModalComponent
+            show={showDialog}
+            closeDialogboxHandler={closeDialogboxHandler}
+          />
         </Frame>
       </Container>
     </div>

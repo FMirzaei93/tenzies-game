@@ -6,19 +6,20 @@ import {
   ModalButton,
   ModalText,
 } from "./Modal.elements";
+import { ModalProvider } from "styled-react-modal";
 
-export default function ModalComponent(props) {
-  return (
-    <div>
+export default function ModalComponent({ closeDialogboxHandler, show }) {
+  return show ? (
+    <ModalProvider>
       <ModalContainer
         isOpen={true}
-        onBackgroundClick={props.closeDialogboxHandler}
-        onEscapeKeydown={props.closeDialogboxHandler}
+        onBackgroundClick={closeDialogboxHandler}
+        onEscapeKeydown={closeDialogboxHandler}
       >
         <ModalHeader>
           <ModalTitle>Error!</ModalTitle>
-          <ModalButton onClick={props.closeDialogboxHandler}>
-            <i className='far fa-window-close'></i>
+          <ModalButton onClick={closeDialogboxHandler}>
+            <i className="far fa-window-close"></i>
           </ModalButton>
         </ModalHeader>
 
@@ -26,6 +27,6 @@ export default function ModalComponent(props) {
           <p>Plese click the Resume button first😉</p>
         </ModalText>
       </ModalContainer>
-    </div>
-  );
+    </ModalProvider>
+  ) : null;
 }
