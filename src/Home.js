@@ -30,20 +30,17 @@ import { useLocalStorage, useTimer } from "./Helper/hooks";
 import { TimerStatuses } from "./Helper/hooks/useTimer";
 
 export default function Home() {
-  const [isWon, setIsWon] = React.useState(false);
-  const [readyBanner, setReadyBanner] = React.useState(false);
-  const [count, setCount] = React.useState(0);
-  const [showDialogbox, setShowDialogbox] = React.useState(false);
   const isLongMobiles = useMediaQuery({
     query: `(${devices.longsL}) and (${devices.longsU}) and (${devices.mobiles})`,
   });
 
-  const [bestRecord, setBestRecord] = useLocalStorage("recordedTimeObj", null);
-
-  //------------------------ Stopwatch Part ----------------------
-
+  const [isWon, setIsWon] = React.useState(false);
+  const [readyBanner, setReadyBanner] = React.useState(false);
+  const [count, setCount] = React.useState(0);
+  const [showDialogbox, setShowDialogbox] = React.useState(false);
   const [isActive, setIsActive] = React.useState(false);
 
+  const [bestRecord, setBestRecord] = useLocalStorage("recordedTimeObj", null);
   const { pauseTimer, resetTimer, startTimer, time, timerStatus } = useTimer();
 
   React.useEffect(() => {
@@ -79,7 +76,6 @@ export default function Home() {
     setDiceObjsArray(createObjsArray());
   }
 
-  //----------------------- Main Part -------------------------
   const [diceObjsArray, setDiceObjsArray] = React.useState(createObjsArray());
   const diceElements = diceObjsArray.map((item) => (
     <Die
@@ -173,7 +169,6 @@ export default function Home() {
     }
   }
 
-  //------------------- Saving Best Record in Local Storage --------------------
 
   function CheckForTheNewRecord() {
     const minute = SplitTime(time).minute;
@@ -223,12 +218,10 @@ export default function Home() {
     }
   }
 
-  //------------------- Change showDialogbox State -------------------
   function closeDialogboxHandler() {
     setShowDialogbox(false);
   }
 
-  // ----------------- Return ------------------
   return (
     <div>
       <GlobalStyle />
@@ -236,26 +229,14 @@ export default function Home() {
         <Frame>
           <InnerContainer>
             <CounterTimerContainer className="row-1">
-              {/*-------------- Counter /*--------------*/}
-
               <Counter count={count} />
-              {/*-------------- Timer --------------*/}
-
               <Timer time={time} />
             </CounterTimerContainer>
-
-            {/*---------- Title ---------*/}
             <Title className="row-1">Tenzies</Title>
-
-            {/*---------- Instraction ---------*/}
-
             <Instruction className="row-1">
               Roll until all dice are the same. Click each die to freeze it at
               its current value between rolls.
             </Instruction>
-
-            {/*---------- Ready And Dice Container ---------*/}
-
             {readyBanner ? (
               <Ready yesClickHandler={yes} cancelClickHandler={cancel} />
             ) : (
@@ -263,32 +244,21 @@ export default function Home() {
                 {diceElements}
               </DiceContainer>
             )}
-
-            {/*---------- Congrats  ---------*/}
-
-            {!readyBanner && isWon && (
+            {!readyBanner && isWon ? (
               <Congrats className="row-1">Congrats!🎉 You Won!</Congrats>
-            )}
-
-            {/*---------- Roll, Back To Menu, Try again Buttons  ---------*/}
-
+            ) : null}
             {!readyBanner && (
               <ButtonContainer className="row-1">
-                {
-                  <Button onClick={rollNewDice}>
-                    {isWon ? "Back To Menu" : "Roll"}
-                  </Button>
-                }
+                <Button onClick={rollNewDice}>
+                  {isWon ? "Back To Menu" : "Roll"}
+                </Button>
 
-                {isWon && (
+                {isWon ? (
                   <Button onClick={tryAgain}>Try again with timer</Button>
-                )}
+                ) : null}
               </ButtonContainer>
             )}
-
-            {/*---------- Stopwatch Container Call ---------*/}
-
-            {!readyBanner && !isWon && (
+            {!readyBanner && !isWon ? (
               <StopWatch
                 isActive={isActive}
                 isPaused={timerStatus === TimerStatuses.Paused}
@@ -298,29 +268,22 @@ export default function Home() {
                 isWon={isWon}
                 readyBanner={readyBanner}
               />
-            )}
-
-            {/*---------- Best Record Section ---------*/}
-
-            {/* Initially we don't have a bestRecord so we guard our component, otherwise,
-              we should expect the object to contain every data we need */}
+            ) : null}
             <BestRecordDiv className="row-1">
               {bestRecord
                 ? `Your Best Record: ${bestRecord.minute}:${bestRecord.second}:${bestRecord.centisecond}`
                 : `No record achieved yet!`}
             </BestRecordDiv>
           </InnerContainer>
-          {/*---------- Confetti Lib ---------*/}
-          {!readyBanner && isWon && (
+          {!readyBanner && isWon ? (
             <Confetti height={window.innerHeight} width={window.innerWidth} />
-          )}
-          {/*---------- Dialog Box ----------*/}
+          ) : null}
 
-          {showDialogbox && (
+          {showDialogbox ? (
             <ModalProvider>
               <ModalComponent closeDialogboxHandler={closeDialogboxHandler} />
             </ModalProvider>
-          )}
+          ) : null}
         </Frame>
       </Container>
     </div>
