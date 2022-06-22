@@ -85,3 +85,23 @@ export function isNewBestRecord(newTime, bestRecord) {
   }
   return false;
 }
+
+export const Time = (val) => {
+  const value = val;
+
+  const centiSeconds = () => ("0" + (value % 100)).slice(-2);
+
+  const seconds = () => ("0" + (Math.floor(value / 100) % 60)).slice(-2);
+
+  const minutes = () => ("0" + (Math.floor(value / 6000) % 60)).slice(-2);
+
+  const toString = () => `${minutes()}:${seconds()}:${centiSeconds()}`;
+
+  return Object.freeze({
+    centiSeconds,
+    minutes,
+    seconds,
+    toString,
+    value,
+  });
+};
