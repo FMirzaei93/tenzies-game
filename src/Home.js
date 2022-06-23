@@ -32,8 +32,12 @@ import reducer, { initialState } from "./reducers";
 const localStorageOptions = {
   serialise: JSON.stringify,
   deserialise: (str) => {
-    const obj = JSON.parse(str);
-    return obj === null ? null : Time(obj.value);
+    const parsedValue = JSON.parse(str);
+
+    if (typeof parsedValue === "number") return Time(parsedValue);
+    if (typeof parsedValue === "object") return Time(parsedValue.value || 0);
+
+    return null;
   },
 };
 

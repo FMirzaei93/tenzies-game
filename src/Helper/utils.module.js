@@ -43,12 +43,15 @@ export const Time = (val) => {
 
   const minutes = () => ("0" + (Math.floor(value / 6000) % 60)).slice(-2);
 
+  const toJSON = () => value;
+
   const toString = () => `${minutes()}:${seconds()}:${centiSeconds()}`;
 
   return Object.freeze({
     centiSeconds,
     minutes,
     seconds,
+    toJSON,
     toString,
     value,
   });
