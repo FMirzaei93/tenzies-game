@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import devices from "../../Helper/devices";
 
 /*----------- Die Component -----------*/
 export const DieFaceDiv = styled.div`

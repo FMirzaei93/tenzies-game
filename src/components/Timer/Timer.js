@@ -1,17 +1,12 @@
 import React from "react";
 import { TimerContainer } from "./Timer.elements";
-import { SplitTime } from "../../Helper/utils.module";
 
-function Timer(props) {
-  const minute = SplitTime(props.time).minute;
-  const second = SplitTime(props.time).second;
-  const centisecond = SplitTime(props.time).centisecond;
-
+function Timer({ time }) {
   return (
     <TimerContainer>
-      <span>{minute}:</span>
-      <span>{second}:</span>
-      <span>{centisecond}</span>
+      <span>{time.minutes()}:</span>
+      <span>{time.seconds()}:</span>
+      <span>{time.centiSeconds()}</span>
     </TimerContainer>
   );
 }
