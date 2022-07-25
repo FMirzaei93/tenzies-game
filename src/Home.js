@@ -118,6 +118,7 @@ export default function Home() {
     dispatch({ type: "banner", payload: true });
   }
 
+  //------------------- Changing the showDialogbox State -------------------
   function closeDialogboxHandler() {
     dispatch({ type: "dialog", payload: false });
   }
@@ -138,6 +139,7 @@ export default function Home() {
         <Frame>
           <InnerContainer>
             <CounterTimerContainer className="row-1">
+
               <Counter count={count} />
               <Timer time={time} />
             </CounterTimerContainer>
