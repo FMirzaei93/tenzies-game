@@ -1,8 +1,8 @@
 import React from "react";
 
 export const defaultUseLocalStorageOptions = {
-  serialise: JSON.parse,
-  deserialise: JSON.stringify,
+  serialise: JSON.stringify,
+  deserialise: JSON.parse,
 };
 
 export const useLocalStorage = (
@@ -14,8 +14,12 @@ export const useLocalStorage = (
   const [data, setData] = React.useState(() => {
     const storedValue = localStorage.getItem(key);
 
-    if (storedValue !== null) {
-      return deserialise(storedValue);
+    try {
+      if (storedValue !== null) {
+        return deserialise(storedValue);
+      }
+    } catch {
+      return typeof initialValue === "function" ? initialValue() : initialValue;
     }
 
     return typeof initialValue === "function" ? initialValue() : initialValue;
