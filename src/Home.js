@@ -138,13 +138,12 @@ export default function Home() {
       <Container>
         <Frame>
           <InnerContainer>
-            <CounterTimerContainer className="row-1">
-
+            <CounterTimerContainer className='row-1'>
               <Counter count={count} />
               <Timer time={time} />
             </CounterTimerContainer>
-            <Title className="row-1">Tenzies</Title>
-            <Instruction className="row-1">
+            <Title className='row-1'>Tenzies</Title>
+            <Instruction className='row-1'>
               Roll until all dice are the same. Click each die to freeze it at
               its current value between rolls.
             </Instruction>
@@ -158,40 +157,38 @@ export default function Home() {
                 {diceElements}
               </DiceContainer>
             )}
-            {!readyBanner && isWon ? (
-              <React.Fragment>
-                <Congrats className="row-1">Congrats!🎉 You Won!</Congrats>
-                <Confetti
-                  height={window.innerHeight}
-                  width={window.innerWidth}
-                />
-              </React.Fragment>
-            ) : null}
+            {!readyBanner && isWon && (
+              <Congrats className='row-1'>Congrats!🎉 You Won!</Congrats>
+            )}
             {!readyBanner && (
-              <ButtonContainer className="row-1">
+              <ButtonContainer className='row-1'>
                 <Button onClick={rollNewDice}>
                   {isWon ? "Back To Menu" : "Roll"}
                 </Button>
 
-                {isWon ? (
+                {isWon && (
                   <Button onClick={tryAgain}>Try again with timer</Button>
-                ) : null}
+                )}
               </ButtonContainer>
             )}
-            {!readyBanner && !isWon ? (
+            {!readyBanner && !isWon && (
               <StopWatch
                 pauseResumeHandler={pauseResumeHandler}
                 resetHandler={resetHandler}
                 startHandler={startHandler}
                 timerStatus={timerStatus}
               />
-            ) : null}
-            <BestRecordDiv className="row-1">
+            )}
+            <BestRecordDiv className='row-1'>
               {bestRecord
                 ? `Your Best Record: ${bestRecord.toString()}`
                 : `No record achieved yet!`}
             </BestRecordDiv>
           </InnerContainer>
+
+          {!readyBanner && isWon && (
+            <Confetti height={window.innerHeight} width={window.innerWidth} />
+          )}
           <ModalComponent
             show={showDialog}
             closeDialogboxHandler={closeDialogboxHandler}
