@@ -66,3 +66,30 @@ export const useLocalStorage4 = (key, initialValue) => {
   return React.useMemo(() => [data, setData], [data]);
 };
 
+// Step 5: Make the initialValue more flexible in terms of its type
+export const useLocalStorage5 = (key, initialValue) => {
+  const [data, setData] = React.useState(() => {
+    const storedValue = localStorage.getItem(key);
+
+    if (storedValue !== null) {
+      return JSON.parse(storedValue);
+    }
+
+    return typeof initialValue === "function" ? initialValue() : initialValue;
+  });
+  const keyRef = React.useRef(key);
+
+  React.useEffect(() => {
+    const prevKey = keyRef.current;
+
+    if (prevKey !== key) {
+      localStorage.removeItem(prevKey);
+    }
+    keyRef.current = key;
+    localStorage.setItem(key, JSON.stringify(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, key]);
+
+  return React.useMemo(() => [data, setData], [data]);
+};
+
