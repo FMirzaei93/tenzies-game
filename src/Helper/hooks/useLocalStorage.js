@@ -30,7 +30,7 @@ export const useLocalStorage = (
     const prevKey = keyRef.current;
 
     if (prevKey !== key) {
-      localStorage.removeItem(key);
+      localStorage.removeItem(prevKey);
     }
 
     keyRef.current = key;
