@@ -167,3 +167,61 @@ export const useLocalStorage7 = (
   return React.useMemo(() => [data, setData], [data]);
 };
 
+// Step 8: Subscribe to localStorage change to keep the state up to date in other browser tabs
+export const useLocalStorage8 = (
+  key,
+  initialValue,
+  options = defaultOptions
+) => {
+  const { serialise, deserialise } = options;
+  const [data, setData] = React.useState(() => {
+    const storedValue = localStorage.getItem(key);
+
+    try {
+      if (storedValue !== null) {
+        return deserialise(storedValue);
+      }
+    } catch {
+      return typeof initialValue === "function" ? initialValue() : initialValue;
+    }
+
+    return typeof initialValue === "function" ? initialValue() : initialValue;
+  });
+  const keyRef = React.useRef(key);
+
+  React.useEffect(() => {
+    const prevKey = keyRef.current;
+
+    if (prevKey !== key) {
+      localStorage.removeItem(prevKey);
+    }
+    keyRef.current = key;
+    localStorage.setItem(key, serialise(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, key]);
+
+  React.useEffect(() => {
+    const prevKey = keyRef.current;
+
+    const handleStorage = (event) => {
+      if (event.key === prevKey && event.newValue) {
+        try {
+          setData(deserialise(event.newValue));
+        } catch {
+          setData(
+            typeof defaultValue === "function" ? initialValue() : initialValue
+          );
+        }
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  return React.useMemo(() => [data, setData], [data]);
+};
