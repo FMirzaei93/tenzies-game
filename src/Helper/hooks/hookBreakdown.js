@@ -19,3 +19,23 @@ export const useLocalStorage2 = (key, initialValue) => {
   return React.useMemo(() => [data, setData], [data]);
 };
 
+// Step 3: Read out the saved data from the localStorage
+export const useLocalStorage3 = (key, initialValue) => {
+  const [data, setData] = React.useState(() => {
+    const storedValue = localStorage.getItem(key);
+
+    if (storedValue !== null) {
+      return JSON.parse(storedValue);
+    }
+
+    return initialValue;
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  return React.useMemo(() => [data, setData], [data]);
+};
+
