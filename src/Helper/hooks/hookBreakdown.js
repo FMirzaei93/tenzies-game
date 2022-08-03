@@ -39,3 +39,30 @@ export const useLocalStorage3 = (key, initialValue) => {
   return React.useMemo(() => [data, setData], [data]);
 };
 
+// Step 4: Guard against key value change by cleaing up the old state from the localStorage
+export const useLocalStorage4 = (key, initialValue) => {
+  const [data, setData] = React.useState(() => {
+    const storedValue = localStorage.getItem(key);
+
+    if (storedValue !== null) {
+      return JSON.parse(storedValue);
+    }
+
+    return initialValue;
+  });
+  const keyRef = React.useRef(key);
+
+  React.useEffect(() => {
+    const prevKey = keyRef.current;
+
+    if (prevKey !== key) {
+      localStorage.removeItem(prevKey);
+    }
+    keyRef.current = key;
+    localStorage.setItem(key, JSON.stringify(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, key]);
+
+  return React.useMemo(() => [data, setData], [data]);
+};
+
