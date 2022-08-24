@@ -1,5 +1,5 @@
 # Tenzies App
-It's an app using React library to create the Tenzies game.
+It's an app using the React library to create the Tenzies game.
 
 <img src="https://github.com/FMirzaei93/tenzies-game/blob/master/src/assets/images/tenzies.png" width="600" height="600">
 
