@@ -5,7 +5,7 @@ export const initialState = {
   isWon: false,
   readyBanner: false,
   showDialog: false,
-  dices: createObjsArray(),
+  dice: createObjsArray(),
 };
 
 export const reducer = (state, action) => {
@@ -15,7 +15,7 @@ export const reducer = (state, action) => {
         ...state,
         count: 0,
         isWon: false,
-        dices: createObjsArray(),
+        dice: createObjsArray(),
         readyBanner: false,
         showDialog: false,
       };
@@ -30,14 +30,14 @@ export const reducer = (state, action) => {
       return {
         ...state,
         count: state.count + 1,
-        dices: state.dices.map((item) =>
+        dice: state.dice.map((item) =>
           item.isHeld ? item : createDieObject()
         ),
       };
     case "hold":
       return {
         ...state,
-        dices: state.dices.map((item) => {
+        dice: state.dice.map((item) => {
           return item.id === action.payload
             ? { ...item, isHeld: !item.isHeld }
             : item;

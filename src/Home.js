@@ -52,7 +52,7 @@ export default function Home() {
     localStorageOptions
   );
   const { pauseTimer, resetTimer, startTimer, time, timerStatus } = useTimer();
-  const [{ count, dices, isWon, readyBanner, showDialog }, dispatch] =
+  const [{ count, dice, isWon, readyBanner, showDialog }, dispatch] =
     React.useReducer(reducer, initialState);
 
   React.useEffect(() => {
@@ -63,16 +63,16 @@ export default function Home() {
   }, [isWon]);
 
   React.useEffect(() => {
-    const allHeld = dices.every((item) => item.isHeld);
-    const firstValue = dices[0].value;
-    const allEqualValue = dices.every((item) => item.value === firstValue);
+    const allHeld = dice.every((item) => item.isHeld);
+    const firstValue = dice[0].value;
+    const allEqualValue = dice.every((item) => item.value === firstValue);
 
     if (allHeld && allEqualValue) {
       pauseTimer();
       dispatch({ type: "game-over" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dices]);
+  }, [dice]);
 
   function startHandler() {
     startTimer();
@@ -123,7 +123,7 @@ export default function Home() {
     dispatch({ type: "dialog", payload: false });
   }
 
-  const diceElements = dices.map((item) => (
+  const diceElements = dice.map((item) => (
     <Die
       key={item.id}
       value={item.value}
