@@ -1,5 +1,5 @@
 import React from "react";
-import { Time } from "../utils.module";
+import { Time } from "../utils";
 
 export const TimerStatuses = {
   Idle: "idle",

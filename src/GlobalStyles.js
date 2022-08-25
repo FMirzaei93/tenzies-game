@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import devices from "./Helper/devices";
+import devices from "./helper/devices";
 
 const GlobalStyle = createGlobalStyle`
   

@@ -5,7 +5,7 @@ import {
   ReadyButtonsContainer,
   ReadyButton,
 } from "./Ready.elements";
-import devices from "../../Helper/devices";
+import devices from "../../helper/devices";
 import { useMediaQuery } from "react-responsive";
 
 function Ready(props) {

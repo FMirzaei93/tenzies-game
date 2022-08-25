@@ -1,4 +1,4 @@
-import { createDieObject, createObjsArray } from "../Helper/utils.module";
+import { createDieObject, createObjsArray } from "../helper/utils";
 
 export const initialState = {
   count: 0,

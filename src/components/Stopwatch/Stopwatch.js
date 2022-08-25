@@ -1,5 +1,5 @@
 import React from "react";
-import { TimerStatuses } from "../../Helper/hooks/useTimer";
+import { TimerStatuses } from "../../helper/hooks/useTimer";
 import {
   StopwatchContainer,
   ActiveBtnsContainer,
@@ -19,7 +19,7 @@ function Stopwatch({
   const StartButton = (
     <Button onClick={startHandler}>
       Start with timer
-      <ButtonIcon className="fas fa-stopwatch"></ButtonIcon>
+      <ButtonIcon className='fas fa-stopwatch'></ButtonIcon>
     </Button>
   );
   const ActiveButtons = (
@@ -32,7 +32,7 @@ function Stopwatch({
   );
 
   return (
-    <StopwatchContainer className="row-1">
+    <StopwatchContainer className='row-1'>
       {isIdle ? StartButton : ActiveButtons}
     </StopwatchContainer>
   );

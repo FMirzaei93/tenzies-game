@@ -6,11 +6,11 @@ import Timer from "./components/Timer/Timer";
 import Ready from "./components/Ready/Ready";
 import Confetti from "react-confetti";
 
-import { isNewBestRecord, Time } from "./Helper/utils.module";
+import { isNewBestRecord, Time } from "./helper/utils";
 import ModalComponent from "./components/Modal/ModalComponent";
 import GlobalStyle from "./GlobalStyles";
 import { useMediaQuery } from "react-responsive";
-import devices from "./Helper/devices";
+import devices from "./helper/devices";
 
 import {
   Container,
@@ -25,8 +25,8 @@ import {
   Button,
   BestRecordDiv,
 } from "./GlobalStyles";
-import { useLocalStorage, useTimer } from "./Helper/hooks";
-import { TimerStatuses } from "./Helper/hooks/useTimer";
+import { useLocalStorage, useTimer } from "./helper/hooks";
+import { TimerStatuses } from "./helper/hooks/useTimer";
 import reducer, { initialState } from "./reducers";
 
 const localStorageOptions = {
